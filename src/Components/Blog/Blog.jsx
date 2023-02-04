@@ -7,6 +7,7 @@ import post_by from "../../Assets/images/post_by.png";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 
 
@@ -21,9 +22,9 @@ function Blog() {
                 </h2>
                 <ul class="breadcrumb-list extra-padding">
                     <li>
-                        <a href="index.html">
+                    <Link to="/"><a href="">
                             Home
-                        </a>
+                        </a></Link>
                     </li>
                     <i class="fa fa-long-arrow-right lotterlo1"><HiArrowNarrowRight /></i>
                     <li>

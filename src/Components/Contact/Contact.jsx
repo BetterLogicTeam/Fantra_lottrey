@@ -4,6 +4,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import picon from "../../Assets/images/picon.png";
 import eicom from "../../Assets/images/eicom.png";
 import contact_b_icon from "../../Assets/images/contact_b_icon.png";
+import { Link } from 'react-router-dom';
 
 
 function Contact() {
@@ -18,9 +19,9 @@ function Contact() {
                 </h2>
                 <ul class="breadcrumb-list extra-padding">
                     <li>
-                        <a href="index.html">
+                    <Link to="/"><a href="">
                             Home
-                        </a>
+                        </a></Link>
                     </li>
                     <i class="fa fa-long-arrow-right lotterlo1"><HiArrowNarrowRight /></i>
                     <li>

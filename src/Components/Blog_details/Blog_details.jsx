@@ -12,6 +12,7 @@ import comment_2 from "../../Assets/images/comment_2.png";
 import comment_3 from "../../Assets/images/comment_3.png";
 import blog_avatar from "../../Assets/images/blog_avatar.png";
 import blog_details from "../../Assets/images/blog_details.jpg";
+import { Link } from 'react-router-dom';
 
 
 function Blog_details() {
@@ -25,9 +26,9 @@ function Blog_details() {
                 </h2>
                 <ul className="breadcrumb-list extra-padding">
                     <li>
-                        <a href="index.html">
+                    <Link to="/"><a href="">
                             Home
-                        </a>
+                        </a></Link>
                     </li>
                     <i className="fa fa-long-arrow-right lotterlo1"><HiArrowNarrowRight /></i>
                     <li>

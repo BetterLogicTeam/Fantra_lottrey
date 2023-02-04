@@ -21,6 +21,7 @@ import "./About.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 // import Popover from 'react-bootstrap/Popover';
 import { Button, Popover } from "antd";
+import { Link } from "react-router-dom";
 const content = (
   <div>
     <p>Content</p>
@@ -37,7 +38,7 @@ function About() {
             <h2 className="title">About Us</h2>
             <ul className="breadcrumb-list extra-padding">
               <li>
-                <a href="index.html">Home</a>
+              <Link to="/"><a href="">Home</a></Link>
               </li>
               <i className="fa fa-long-arrow-right lotterlo1">
                 <HiArrowNarrowRight />

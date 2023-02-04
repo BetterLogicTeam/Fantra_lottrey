@@ -13,6 +13,7 @@ import { Pagination } from "swiper";
 import Lottery_slider from "../Lottery_slider/Lottery_slider";
 import Pick_number from "../Pick_number/Pick_number";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 function Lottery() {
   return (
@@ -28,7 +29,7 @@ function Lottery() {
             <h2 className="title">POWERBALL</h2>
             <ul className="breadcrumb-list extra-padding">
               <li>
-                <a href="index.html">Home</a>
+                <Link to="/"><a href="">Home</a></Link>
               </li>
               <i className="fa fa-long-arrow-right lotterlo1">< HiArrowNarrowRight/></i>
               <li>

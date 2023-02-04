@@ -3,6 +3,7 @@ import Result_card from '../Result_card/Result_card';
 import Result_check from '../Result_check/Result_check';
 import result from "../../Assets/images/result.jpg";
 import { HiArrowNarrowRight } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,9 +18,10 @@ function Results() {
                 </h2>
                 <ul class="breadcrumb-list extra-padding">
                     <li>
-                        <a href="index.html">
+                    <Link to="/"><a href="">
                             Home
                         </a>
+                        </Link>
                     </li>
                     <i class="fa fa-long-arrow-right lotterlo1 fs-5"><HiArrowNarrowRight /></i>
                     <li>
