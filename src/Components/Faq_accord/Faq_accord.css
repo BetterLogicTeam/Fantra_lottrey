@@ -1,0 +1,8 @@
+.accordion-button:not(.collapsed){
+    --bs-accordion-active-bg: transparent !important;
+}
+
+.faq-menu{
+    background-image: url("../../Assets/images/faq-bg.png") !important;
+    font-family: "Comfortaa";
+}

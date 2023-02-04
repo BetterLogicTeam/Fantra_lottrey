@@ -1,0 +1,22 @@
+.testimonial{
+    background-image: url("../../Assets/images/teastmonial.jpg");
+}
+
+.cliieent_1{
+    position: absolute !important;
+    display: inline-block !important;
+}
+
+.client-review{
+    display: none !important;
+    position: relative !important;
+}
+
+.cliieent_1:hover .client-review{
+    background-color: #fff !important;
+    border-radius: 30px;
+    padding: 10px;
+    z-index: 10000;
+    text-align: center;
+    display: block !important;
+}
