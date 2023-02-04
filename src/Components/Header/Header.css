@@ -10,3 +10,10 @@
         margin-right: 10px !important;
     }
 }
+
+@media screen and (max-width:800px) {
+    .active{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
