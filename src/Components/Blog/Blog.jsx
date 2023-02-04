@@ -64,7 +64,7 @@ function Blog() {
                                 the ability to win the lotto.
                                 Quite a few players have won many times,
                             </p>
-                            <a href="blog-details.html" class="custom-button2">Read More</a>
+                            <Link to="/Blog_details"><a href="" class="custom-button2">Read More</a></Link>
                         </div>
                     </div>
                     <div class="single-blog">
@@ -92,7 +92,7 @@ function Blog() {
                                 the ability to win the lotto.
                                 Quite a few players have won many times,
                             </p>
-                            <a href="blog-details.html" class="custom-button2">Read More</a>
+                           <Link to="/Blog_details"> <a href="" class="custom-button2">Read More</a></Link>
                         </div>
                     </div>
                     <div class="single-blog">
@@ -120,7 +120,7 @@ function Blog() {
                                 the ability to win the lotto.
                                 Quite a few players have won many times,
                             </p>
-                            <a href="blog-details.html" class="custom-button2">Read More</a>
+                            <Link to="/Blog_details"><a href="" class="custom-button2">Read More</a></Link>
                         </div>
                     </div>
                     <div class="single-blog">
@@ -148,7 +148,7 @@ function Blog() {
                                 the ability to win the lotto.
                                 Quite a few players have won many times,
                             </p>
-                            <a href="blog-details.html" class="custom-button2">Read More</a>
+                            <Link to="/Blog_details"><a href="" class="custom-button2">Read More</a></Link>
                         </div>
                     </div>
                 </div>
