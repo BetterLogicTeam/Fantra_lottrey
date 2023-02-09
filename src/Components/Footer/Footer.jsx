@@ -27,6 +27,16 @@ function Footer() {
                   </div>
                   <div className="right">
                     <ul className="links">
+                    <li>
+                        <Link to="/">
+                          <a href="#">Home</a>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/Results">
+                          <a href="#">Results</a>
+                        </Link>
+                      </li>
                       <li>
                         <Link to="/About">
                           <a href="#">About</a>
@@ -34,19 +44,8 @@ function Footer() {
                       </li>
                       <li>
                         <Link to="/Faq">
-                          <a href="#">FAQs</a>
+                          <a href="#">Faq's</a>
                         </Link>
-                      </li>
-                      <li>
-                        <Link to="/Contact">
-                          <a href="#">Contact</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <a href="#">Terms of Service</a>
-                      </li>
-                      <li>
-                        <a href="#">Privacy</a>
                       </li>
                     </ul>
                   </div>

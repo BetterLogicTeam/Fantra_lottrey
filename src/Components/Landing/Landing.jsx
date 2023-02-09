@@ -4,19 +4,14 @@ import f1 from "../../Assets/images/f1.png";
 import f2 from "../../Assets/images/f2.png";
 import f3 from "../../Assets/images/f3.png";
 import f4 from "../../Assets/images/f4.png";
-import d1 from "../../Assets/images/d1.png";
 import d2 from "../../Assets/images/d2.png";
 import d3 from "../../Assets/images/d3.png";
 import d4 from "../../Assets/images/d4.png";
-import time from "../../Assets/images/time.png";
 import overlaymask1 from "../../Assets/images/overlaymask1.png";
 import result_background from "../../Assets/images/result_background.jpg";
 import Result_card from "../Result_card/Result_card";
 import Result_check from "../Result_check/Result_check";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Navigation } from "swiper";
+import Landing_slider from "../Landing_slider/Landing_slider";
 
 function Landing() {
   return (
@@ -42,136 +37,7 @@ function Landing() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <Swiper
-                navigation={true}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  },
-                  768: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  },
-                  1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                  },
-                }}
-                modules={[Navigation]}
-                className="mySwiper swipper_paddding"
-              >
-                <SwiperSlide className="single-draw">
-                  <div className="item">
-                    <div>
-                      {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                      <div className="icon">
-                        <img src={d1} alt="" />
-                      </div>
-                      <h4>$116 Million Win BTC</h4>
-                      <a href="#" className="custom-button1">
-                        Play Now
-                      </a>
-                      <div className="next-draw">
-                        <span className="text">Next Draw :</span>
-                        <div className="time">
-                          <img src={time} alt="" />
-                          <h6
-                          >00 Days 00:00:00</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="single-draw">
-                  <div className="item">
-                    <div>
-                      {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                      <div className="icon">
-                        <img src={d2} alt="" />
-                      </div>
-                      <h4>$106 Million Win BTC</h4>
-                      <a href="#" className="custom-button1">
-                        Play Now
-                      </a>
-                      <div className="next-draw">
-                        <span className="text">Next Draw :</span>
-                        <div className="time">
-                          <img src={time} alt="" />
-                          <h6
-                          >00 Days 00:00:00</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="single-draw">
-                  <div className="item">
-                    <div>
-                      {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                      <div className="icon">
-                        <img src={d3} alt="" />
-                      </div>
-                      <h4>$145 Million Win BTC</h4>
-                      <a href="#" className="custom-button1">
-                        Play Now
-                      </a>
-                      <div className="next-draw">
-                        <span className="text">Next Draw :</span>
-                        <div className="time">
-                          <img src={time} alt="" />
-                          <h6
-                          >00 Days 00:00:00</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="single-draw">
-                  <div className="item">
-                    <div>
-                      {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                      <div className="icon">
-                        <img src={d4} alt="" />
-                      </div>
-                      <h4>$187 Million Win BTC</h4>
-                      <a href="#" className="custom-button1">
-                        Play Now
-                      </a>
-                      <div className="next-draw">
-                        <span className="text">Next Draw :</span>
-                        <div className="time">
-                          <img src={time} alt="" />
-                          <h6
-                          >00 Days 00:00:00</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="single-draw">
-                  <div className="item">
-                    <div>
-                      {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                      <div className="icon">
-                        <img src={d1} alt="" />
-                      </div>
-                      <h4>$116 Million Win BTC</h4>
-                      <a href="#" className="custom-button1">
-                        Play Now
-                      </a>
-                      <div className="next-draw">
-                        <span className="text">Next Draw :</span>
-                        <div className="time">
-                          <img src={time} alt="" />
-                          <h6
-                          >00 Days 00:00:00</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              </Swiper>
+              <Landing_slider />
             </div>
           </div>
         </div>
@@ -263,23 +129,7 @@ function Landing() {
           src="assets/images/check-num-right.png"
           alt=""
         />
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-9">
-              <div className="content">
-                <div className="section-header">
-                  <h2 className="title">Check your numbers</h2>
-                  <p className="text">
-                    Are you holding on to a winning ticket? Here's an easy way
-                    to find out.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <Result_check />
-        </div>
       </section>
     </div>
   );

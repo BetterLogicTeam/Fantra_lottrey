@@ -3,6 +3,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import Faq_accord from '../Faq_accord/Faq_accord';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import "./Faq.css"
 
 
 function Faq() {

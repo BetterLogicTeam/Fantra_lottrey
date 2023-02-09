@@ -26,13 +26,13 @@ function App() {
         <Header/>
         <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/Lottery" element={<Lottery />} />
+        {/* <Route path="/Lottery" element={<Lottery />} /> */}
         <Route path="/Results" element={<Results />} />
         <Route path="/About" element={<About />} />
         <Route path="/Faq" element={<Faq />} />
-        <Route path="/Blog" element={<Blog />} />
-        <Route path="/Blog_details" element={<Blog_details />} />
-        <Route path="/Contact" element={<Contact />} />
+        {/* <Route path="/Blog" element={<Blog />} /> */}
+        {/* <Route path="/Blog_details" element={<Blog_details />} /> */}
+        {/* <Route path="/Contact" element={<Contact />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

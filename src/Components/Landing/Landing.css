@@ -5,3 +5,28 @@
 .swipper_paddding{
     padding: 30px !important;
 }
+
+.winnerimg h4 {
+    display: inline-flex;
+}
+
+.single-draw h4 {
+    font-size: 23px;
+    line-height: 34px;
+    font-weight: 700;
+}
+
+.winnerimg h4 img {
+    width: 30px !important;
+    /* margin-top: -5px; */
+}
+
+.text{
+    font-family: "Comfortaa", cursive;
+}
+
+.paadding{
+    padding: 0 0px;
+    margin-left: 10px;
+}
+
