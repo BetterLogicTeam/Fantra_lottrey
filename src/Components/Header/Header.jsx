@@ -10,8 +10,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Connect_wallet_modal from "../Connect_wallet_modal/Connect_wallet_modal";
 
-
-
 function Header() {
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -26,7 +24,7 @@ function Header() {
                   <a href="" className="logo">
                     <img src={lucky} alt="" />
                   </a>
-                 <Connect_wallet_modal />
+                  <Connect_wallet_modal />
                 </div>
               </div>
             </div>
@@ -59,9 +57,7 @@ function Header() {
                   </li>
                 </Link>
               </ul>
-              <div className="right-tools">
-               
-              </div>
+              <div className="right-tools"></div>
               <div className="header-bar d-lg-none">
                 <span></span>
                 <span></span>

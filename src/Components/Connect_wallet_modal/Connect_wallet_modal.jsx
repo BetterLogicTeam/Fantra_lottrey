@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import google from "../../Assets/images/google.png";
 import Modal from "react-bootstrap/Modal";
+import { loadWeb3 } from "../../apis/api";
 
 function MyVerticallyCenteredModal2(props) {
   return (
@@ -75,19 +76,38 @@ function MyVerticallyCenteredModal2(props) {
 
 const Connect_wallet_modal = () => {
   const [modalShow2, setModalShow2] = React.useState(false);
+  let [btnTxt, setBtTxt] = useState("Connect Wallet");
+  const getaccount = async () => {
+    let acc = await loadWeb3();
+    // console.log("ACC=",acc)
+    if (acc == "No Wallet") {
+      // toast.error('please install metamask')
+      setBtTxt("Install metamask");
+    } else if (acc == "Wrong Network") {
+      setBtTxt("Wrong Network");
+    } else {
+      let myAcc =
+        acc?.substring(0, 4) + "..." + acc?.substring(acc?.length - 4);
+      setBtTxt(myAcc);
+    }
+  };
+  useEffect(() => {
+    // getaccount()
+  });
 
   return (
     <div>
       <div className="right-area">
         <div className="log-reg-area" variant="">
           <a
-            onClick={() => setModalShow2(true)}
+            onClick={getaccount}
+            // onClick={() => setModalShow2(true)}
             href="#"
             class="custom-button2 navmainbt"
             data-toggle="modal"
             data-target="#loginModal"
           >
-            Connect Wallet
+            {btnTxt}
           </a>
           <MyVerticallyCenteredModal2
             show={modalShow2}

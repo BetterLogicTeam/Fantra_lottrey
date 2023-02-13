@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Web3 from "web3";
+import { loadWeb3 } from "../../apis/api";
 import d1 from "../../Assets/images/d1.png";
 import d2 from "../../Assets/images/d2.png";
 import d3 from "../../Assets/images/d3.png";
+import {
+  loteryContractAbi,
+  loteryContractAddress,
+  loteryTokenAbi,
+  loteryTokenAddress,
+} from "../../utilies/Bsc_contract";
 
 function Result_card(data) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +22,78 @@ function Result_card(data) {
     { name: 20222222, age: "$20" },
     { name: 20222222, age: "$20" },
   ];
-  const slice = tableData.slice(0,2)
+  const slice = tableData.slice(0, 2);
+
+  const [cardData, setCardData] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+
+  const getResult = async () => {
+    let acc = await loadWeb3();
+
+    const webSupply = new Web3(
+      "https://data-seed-prebsc-1-s1.binance.org:8545"
+    );
+    const web3 = window.web3;
+    let loteryContractOf = new webSupply.eth.Contract(
+      loteryContractAbi,
+      loteryContractAddress
+    );
+
+    let loteryTokenof = new webSupply.eth.Contract(
+      loteryTokenAbi,
+      loteryTokenAddress
+    );
+    let arr = [];
+    for (let i = 1; i < 11; i++) {
+      let result = await loteryContractOf.methods.showWinners(i).call();
+      for (let index = 0; index < result[0].length; index++) {
+        const address = result[0][index];
+        const amount = result[1][index];
+        let obj = {
+          address: address,
+          amount: amount,
+        };
+        arr.push(obj);
+      }
+      console.log("result", result[0]);
+
+      let playerEntry = await loteryContractOf.methods
+        .playerentry(i, acc)
+        .call();
+
+      // let obj = {
+      //   receivedEntry: cardInfo.received_entry,
+      //   winner: cardInfo.winners,
+      //   noOfBuyTickets: playerEntry,
+      //   cardTitle: cardInfo.name,
+      //   totalEntry: cardInfo.total_entry,
+      // };
+
+      // console.log("playerEntry", obj);
+
+      // arr.push(obj);
+    }
+    setCardData([...arr]);
+
+    // console.log("arr", arr);
+
+    // setCardData([...arr]);
+  };
+
+  useEffect(() => {
+    getResult();
+  }, []);
+  console.log("resultarray", cardData);
   return (
     <div>
       <ul>
@@ -51,17 +130,17 @@ function Result_card(data) {
                                     <th scope="col">Amount</th>
                                   </tr>
                                 </thead>
-                                {console.log('slice',slice)}
+                                {console.log("slice", slice)}
                                 <tbody class="#tbbody">
-                                  {tableData.slice(0,2).map((item, index) => {
+                                  {tableData.slice(0, 2).map((item, index) => {
                                     return (
-                                    <tr key={index}>
-                                      <th scope="row">1</th>
-                                      <td>{item.name}</td>
-                                      <td></td>
-                                      <td>{item.age}</td>
-                                    </tr>
-                                    )
+                                      <tr key={index}>
+                                        <th scope="row">1</th>
+                                        <td>{item.name}</td>
+                                        <td></td>
+                                        <td>{item.age}</td>
+                                      </tr>
+                                    );
                                   })}
                                 </tbody>
                               </table>
