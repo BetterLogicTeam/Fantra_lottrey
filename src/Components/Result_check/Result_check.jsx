@@ -22,10 +22,7 @@ function Result_check() {
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                     
-                </div>
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="check-box">
                         <h4 class="title">Enter Your Token Number</h4>
@@ -38,9 +35,6 @@ function Result_check() {
                             <input type="text" class="input-round"/>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    
                 </div>
             </div>
         </div>

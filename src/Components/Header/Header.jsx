@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import lucky from "../../Assets/images/lucky.png";
 import cart from "../../Assets/images/cart.png";
@@ -12,6 +12,7 @@ import Connect_wallet_modal from "../Connect_wallet_modal/Connect_wallet_modal";
 
 function Header() {
   const [modalShow, setModalShow] = React.useState(false);
+  const [active, setactive] = useState(0);
 
   return (
     <div>
@@ -34,24 +35,24 @@ function Header() {
           <div className="container">
             <div className="header-wrapper">
               <ul className="menu">
-                <Link to="/">
+                <Link className="leenk" to="/">
                   <li>
                     <a href="" className="">
                       Home
                     </a>
                   </li>
                 </Link>
-                <Link to="/Results">
+                <Link className="leenk" to="/Results">
                   <li>
                     <a href="">Results</a>
                   </li>
                 </Link>
-                <Link to="/About">
+                <Link className="leenk" to="/About">
                   <li>
                     <a href="">About</a>
                   </li>
                 </Link>
-                <Link to="/Faq">
+                <Link className="leenk" to="/Faq">
                   <li>
                     <a href="">Faq</a>
                   </li>

@@ -22,6 +22,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 // import Popover from 'react-bootstrap/Popover';
 import { Button, Popover } from "antd";
 import { Link } from "react-router-dom";
+import Testimonial_data from "../Testimonial_data/Testimonial_data";
 const content = (
   <div>
     <p>Content</p>
@@ -38,7 +39,9 @@ function About() {
             <h2 className="title">About Us</h2>
             <ul className="breadcrumb-list extra-padding">
               <li>
-              <Link to="/"><a href="">Home</a></Link>
+                <Link to="/">
+                  <a href="">Home</a>
+                </Link>
               </li>
               <i className="fa fa-long-arrow-right lotterlo1">
                 <HiArrowNarrowRight />
@@ -179,262 +182,44 @@ function About() {
             <div className="col-lg-12">
               <div className="about-testimonial">
                 <img src={map} alt="" />
-                
 
                 <div className="client one cliieent_1">
-                            <div className="img">
-                                <img src={testi1} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div className="img">
+                    <img src={testi1} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
 
-                        <div className="client two cliieent_1">
-                            <div className="img">
-                                <img src={testi2} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="client three cliieent_1">
-                            <div className="img">
-                                <img src={testi3} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="client four cliieent_1">
-                            <div className="img">
-                                <img src={testi4} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="client five cliieent_1">
-                            <div className="img">
-                                <img src={testi5} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="client six cliieent_1">
-                            <div className="img">
-                                <img src={testi6} alt=""/>
-                            </div>
-                            <div className=" ">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <h5 className="top-text">Awesome Fantra!</h5>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text fw-500">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div className="client two">
-                            <div className="img" data-toggle="popover-x" data-target="#myPopover2" data-placement="top" data-trigger="hover focus">
-                                <img src={testi2} alt=""/>
-                            </div>
-                            <div id="myPopover2" className="popover popover-default mypopover popover-x">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <p className="top-text">Awesome Fantra!</p>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div><div className="popover-x-marker" style={{display: "none"}}></div>
-                        </div> */}
-                        {/* <div className="client three">
-                            <div className="img" data-toggle="popover-x" data-target="#myPopover3" data-placement="top" data-trigger="hover focus">
-                                <img src={testi3} alt=""/>
-                            </div>
-                            <div id="myPopover3" className="popover popover-default mypopover popover-x">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <p className="top-text">Awesome Fantra!</p>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div><div className="popover-x-marker" style={{display: "none"}}></div>
-                        </div>
-                        <div className="client four">
-                            <div className="img" data-toggle="popover-x" data-target="#myPopover4" data-placement="top" data-trigger="hover focus">
-                                <img src={testi4} alt=""/>
-                            </div>
-                            <div id="myPopover4" className="popover popover-default mypopover popover-x">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <p className="top-text">Awesome Fantra!</p>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div><div className="popover-x-marker" style={{display: "none"}}></div>
-                        </div>
-                        <div className="client five">
-                            <div className="img" data-toggle="popover-x" data-target="#myPopover5" data-placement="top" data-trigger="hover focus">
-                                <img src={testi5} alt=""/>
-                            </div>
-                            <div id="myPopover5" className="popover popover-default mypopover popover-x">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <p className="top-text">Awesome Fantra!</p>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div><div className="popover-x-marker" style={{display: "none"}}></div>
-                        </div>
-                        <div className="client six">
-                            <div className="img" data-toggle="popover-x" data-target="#myPopover6" data-placement="top" data-trigger="hover focus">
-                                <img src={testi6} alt=""/>
-                            </div>
-                            <div id="myPopover6" className="popover popover-default mypopover popover-x">
-                                <div className="arrow"></div>
-                                <div className="client-review">
-                                    <p className="top-text">Awesome Fantra!</p>
-                                    <div className="stars">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                    </div>
-                                    <p className="bottom-text">“Ideas are easy. Implementation is hard.”</p>
-                                    <div className="client-info">
-                                        <h4 className="name">Flora Oliver</h4>
-                                        <p className="date">Jan 1, 2021</p>
-                                    </div>
-                                </div>
-                            </div><div className="popover-x-marker" style={{display: "none"}}></div>
-                        </div> */}
+                <div className="client two cliieent_1">
+                  <div className="img">
+                    <img src={testi2} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
+                <div className="client three cliieent_1">
+                  <div className="img">
+                    <img src={testi3} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
+                <div className="client four cliieent_1">
+                  <div className="img">
+                    <img src={testi4} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
+                <div className="client five cliieent_1">
+                  <div className="img">
+                    <img src={testi5} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
+                <div className="client six cliieent_1">
+                  <div className="img">
+                    <img src={testi6} alt="" />
+                  </div>
+                  <Testimonial_data />
+                </div>
               </div>
             </div>
           </div>

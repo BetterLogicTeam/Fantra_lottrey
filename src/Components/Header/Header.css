@@ -5,6 +5,39 @@
     text-align: center !important;
 }
 
+.menu{
+    font-family: "Comfortaa", cursive;
+}
+
+.leenk:active{
+    /* text-decoration: underline !important; */
+    background: white;
+    content: "";
+    /* width: 70%;
+    height: 2px;
+    background: #f3e5e5;
+    top: calc(93% + 3px);
+    position: absolute;
+    content: ""; */
+    /* z-index: 2; */
+    /* left: 15%; */
+}
+
+/* .menu .leenk>li>a.active::before {
+    transform: scaleX(1) translateX(-50%);
+}
+
+.header-wrapper .menu .leenk>li>a::before {
+    width: 70%;
+    height: 2px;
+    background: #f3e5e5;
+    top: calc(93% + 3px);
+    position: absolute;
+    content: "";
+    z-index: 2;
+    left: 15%;
+} */
+
 @media screen and (max-width:700px) {
     .custom-button1{
         margin-right: 10px !important;
