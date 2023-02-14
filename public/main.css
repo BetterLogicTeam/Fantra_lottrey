@@ -1938,7 +1938,7 @@ input[type=submit] {
 }
 .result-list .single-list .light-area .light-area-bottom .left .numbers span {
   width: 36px;
-  height: 36px;
+  height: auto;
   line-height: 36px;
   text-align: center;
   border-radius: 50%;

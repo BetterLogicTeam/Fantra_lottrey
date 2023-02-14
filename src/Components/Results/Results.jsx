@@ -44,23 +44,22 @@ function Results() {
                 </div>
             </div>
         </div>
-        <div class="check-number result-page">
+        {/* <div class="check-number result-page">
             <div class="container">
                 <Result_check />
             </div>
-        </div>
+        </div> */}
         <div class="lottery-result result-page">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="result-list">
                             <Result_card />
-                            <Result_card />
-                            <Result_card />
+                           
                         </div>
-                        <div class="text-center">
+                        {/* <div class="text-center">
                             <a class="view-all" href="#">Load more </a>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

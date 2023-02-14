@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Landing.css";
 import f1 from "../../Assets/images/f1.png";
 import f2 from "../../Assets/images/f2.png";
@@ -12,11 +12,49 @@ import result_background from "../../Assets/images/result_background.jpg";
 import Result_card from "../Result_card/Result_card";
 import Result_check from "../Result_check/Result_check";
 import Landing_slider from "../Landing_slider/Landing_slider";
+import { loadWeb3 } from "../../apis/api";
+import {
+  loteryContractAbi,
+  loteryContractAddress,
+} from "../../utilies/Bsc_contract";
+import Web3 from "web3";
+import Loading_spinner from "../Loading/Loading_spinner";
 
 function Landing() {
+  const [loading_spin, setloading_spin] = useState(false)
+  const showWinners = async () => {
+    try {
+      const webSupply = new Web3(
+        "https://data-seed-prebsc-1-s1.binance.org:8545"
+      );
+      let acc = await loadWeb3();
+      const web3 = window.web3;
+      let loteryContractOf = new webSupply.eth.Contract(
+        loteryContractAbi,
+        loteryContractAddress
+      );
+      for (let i = 0; i < 16; i++) {
+        const result = await loteryContractOf.methods.showWinners(i).call();
+        console.log(`loteryContractOf${i}`, result);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    showWinners();
+  }, []);
+
   return (
     <div>
-      <section className="banner-section">
+      {
+        loading_spin &&
+        <Loading_spinner/>
+      }
+
+
+          <section className="banner-section">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -37,7 +75,7 @@ function Landing() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <Landing_slider />
+              <Landing_slider setloading_spin={setloading_spin} />
             </div>
           </div>
         </div>
@@ -104,21 +142,16 @@ function Landing() {
                 <h4 className="box-header">Lottery Winning Numbers</h4>
                 <div className="result-list">
                   <Result_card />
-                  <Result_card />
-                  <Result_card />
+                 
                 </div>
-                <div className="text-center">
-                  <a className="view-all" href="#">
-                    View All Result{" "}
-                  </a>
-                </div>
+                
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="check-number">
+      {/* <section className="check-number">
         <img
           className="img-left"
           src="assets/images/check-num-left.png"
@@ -129,8 +162,11 @@ function Landing() {
           src="assets/images/check-num-right.png"
           alt=""
         />
-          <Result_check />
-      </section>
+        <Result_check />
+      </section> */}
+        
+     
+    
     </div>
   );
 }

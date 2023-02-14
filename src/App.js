@@ -18,21 +18,24 @@ import Blog from './Components/Blog/Blog';
 import Blog_details from './Components/Blog_details/Blog_details';
 import Contact from './Components/Contact/Contact';
 import Footer from './Components/Footer/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="">
-       <BrowserRouter>
-        <Header/>
+      <BrowserRouter>
+        <ToastContainer />
+        <Header />
         <Routes>
-        <Route path="/" element={<Landing />} />
-        {/* <Route path="/Lottery" element={<Lottery />} /> */}
-        <Route path="/Results" element={<Results />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Faq" element={<Faq />} />
-        {/* <Route path="/Blog" element={<Blog />} /> */}
-        {/* <Route path="/Blog_details" element={<Blog_details />} /> */}
-        {/* <Route path="/Contact" element={<Contact />} /> */}
+          <Route path="/" element={<Landing />} />
+          {/* <Route path="/Lottery" element={<Lottery />} /> */}
+          <Route path="/Results" element={<Results />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Faq" element={<Faq />} />
+          {/* <Route path="/Blog" element={<Blog />} /> */}
+          {/* <Route path="/Blog_details" element={<Blog_details />} /> */}
+          {/* <Route path="/Contact" element={<Contact />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

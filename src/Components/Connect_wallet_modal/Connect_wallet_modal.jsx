@@ -92,7 +92,7 @@ const Connect_wallet_modal = () => {
     }
   };
   useEffect(() => {
-    // getaccount()
+    getaccount()
   });
 
   return (
