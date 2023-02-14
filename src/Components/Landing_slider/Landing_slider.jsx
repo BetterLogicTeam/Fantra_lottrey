@@ -101,7 +101,7 @@ const Landing_slider = ({ setloading_spin }) => {
         loteryTokenAddress
       );
    
-      let approve = await loteryTokenof.methods.approve(acc, 1000000).send({
+      let approve = await loteryTokenof.methods.approve(loteryContractAddress, 1000000).send({
         from: acc,
       });
       toast.success("Approve successful! 🎉")
@@ -115,7 +115,7 @@ const Landing_slider = ({ setloading_spin }) => {
     } catch (error) {
       console.log("Error While Buy Ticket", error);
       setloading_spin(false)
-      toast.success("Transaction failed")
+      toast.error("Transaction failed")
 
     }
   };
