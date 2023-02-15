@@ -19,24 +19,7 @@ import Countdown from "react-countdown";
 import Timer from "../Timer/Timer";
 
 const Landing_slider = ({ setloading_spin }) => {
-  const [cardData, setCardData] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ]);
+  const [cardData, setCardData] = useState(Array(16).fill(" "));
 
   const getInitialValue = async () => {
     let acc = await loadWeb3();
