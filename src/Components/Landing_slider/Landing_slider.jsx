@@ -88,7 +88,7 @@ const Landing_slider = ({ setloading_spin }) => {
 
   const buyTickets = async (id) => {
     try {
-      setloading_spin(true)
+      setloading_spin(true);
       let acc = await loadWeb3();
 
       const web3 = window.web3;
@@ -100,29 +100,29 @@ const Landing_slider = ({ setloading_spin }) => {
         loteryTokenAbi,
         loteryTokenAddress
       );
-   
-      let approve = await loteryTokenof.methods.approve(loteryContractAddress, 1000000).send({
-        from: acc,
-      });
-      toast.success("Approve successful! 🎉")
+
+      let approve = await loteryTokenof.methods
+        .approve(loteryContractAddress, 1000000)
+        .send({
+          from: acc,
+        });
+      toast.success("Approve successful! 🎉");
 
       let buyToken = await loteryContractOf.methods.plans(id, 10).send({
         from: acc,
       });
-      toast.success("Transaction successful! 🎉")
-      setloading_spin(false)
-
+      toast.success("Transaction successful! 🎉");
+      setloading_spin(false);
     } catch (error) {
       console.log("Error While Buy Ticket", error);
-      setloading_spin(false)
-      toast.error("Transaction failed")
-
+      setloading_spin(false);
+      toast.error("Transaction failed");
     }
   };
 
   const selectWinner = async (id) => {
     try {
-      setloading_spin(true)
+      setloading_spin(true);
       let acc = await loadWeb3();
       const web3 = window.web3;
       let loteryContractOf = new web3.eth.Contract(
@@ -138,15 +138,12 @@ const Landing_slider = ({ setloading_spin }) => {
         toast.success("Transaction successful! 🎉");
       } else {
         toast.error("Only Owner Call This Function");
-      setloading_spin(false)
-
+        setloading_spin(false);
       }
     } catch (e) {
       console.log(e);
-      toast.success("Transaction failed")
-      setloading_spin(false)
-
-
+      toast.success("Transaction failed");
+      setloading_spin(false);
     }
   };
 
@@ -310,14 +307,14 @@ const Landing_slider = ({ setloading_spin }) => {
                     </>
                   </a>
 
-                  <button
+                  {/* <button
                     className="custom_button_Owner"
                     onClick={() => {
                       selectWinner(index + 1);
                     }}
                   >
                     Select Winner
-                  </button>
+                  </button> */}
 
                   <div className="next-draw">
                     <span className="text">Next Draw :</span>
