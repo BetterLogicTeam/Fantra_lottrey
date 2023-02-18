@@ -35,7 +35,7 @@ function Landing() {
       );
       for (let i = 0; i < 16; i++) {
         const result = await loteryContractOf.methods.showWinners(i).call();
-        console.log(`loteryContractOf${i}`, result);
+        // console.log(`loteryContractOf${i}`, result);
       }
     } catch (e) {
       console.log(e);

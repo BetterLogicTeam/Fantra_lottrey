@@ -70,7 +70,7 @@ function Result_card(data) {
       let arr = [];
       for (let i = 1; i < 17; i++) {
         let cardInfo = await loteryContractOf.methods.fin(i).call();
-        console.log("cardInfo", cardInfo);
+        // console.log("cardInfo", cardInfo);
   
         let obj = {
           receivedEntry: cardInfo.received_entry,

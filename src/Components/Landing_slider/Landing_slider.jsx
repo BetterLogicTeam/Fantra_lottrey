@@ -17,6 +17,7 @@ import { loadWeb3 } from "../../apis/api";
 import { toast } from "react-toastify";
 import Countdown from "react-countdown";
 import Timer from "../Timer/Timer";
+import axios from "axios";
 
 const Landing_slider = ({ setloading_spin }) => {
   const [cardData, setCardData] = useState([
@@ -37,10 +38,12 @@ const Landing_slider = ({ setloading_spin }) => {
     "",
     "",
   ]);
+  const [Compeletedtime, setCompeletedtime] = useState(false);
+  const [count, setcount] = useState(0);
 
   const getInitialValue = async () => {
     let acc = await loadWeb3();
-
+    console.log("Compeletedtime", Compeletedtime);
     const webSupply = new Web3(
       "https://data-seed-prebsc-1-s1.binance.org:8545"
     );
@@ -57,7 +60,7 @@ const Landing_slider = ({ setloading_spin }) => {
     let arr = [];
     for (let i = 1; i < 17; i++) {
       let cardInfo = await loteryContractOf.methods.fin(i).call();
-      console.log("cardInfo", cardInfo);
+      // console.log("cardInfo", cardInfo);
 
       let playerEntry = await loteryContractOf.methods
         .playerentry(i, acc)
@@ -70,6 +73,7 @@ const Landing_slider = ({ setloading_spin }) => {
         cardTitle: cardInfo.name,
         totalEntry: cardInfo.total_entry,
         currenttime: cardInfo.currenttime,
+        time: cardInfo.time,
       };
 
       // console.log("playerEntry", obj);
@@ -88,7 +92,7 @@ const Landing_slider = ({ setloading_spin }) => {
 
   const buyTickets = async (id) => {
     try {
-      setloading_spin(true)
+      setloading_spin(true);
       let acc = await loadWeb3();
 
       const web3 = window.web3;
@@ -100,53 +104,37 @@ const Landing_slider = ({ setloading_spin }) => {
         loteryTokenAbi,
         loteryTokenAddress
       );
-   
-      let approve = await loteryTokenof.methods.approve(loteryContractAddress, 1000000).send({
-        from: acc,
-      });
-      toast.success("Approve successful! 🎉")
+
+      let approve = await loteryTokenof.methods
+        .approve(loteryContractAddress, 1000000)
+        .send({
+          from: acc,
+        });
+      toast.success("Approve successful! 🎉");
 
       let buyToken = await loteryContractOf.methods.plans(id, 10).send({
         from: acc,
       });
-      toast.success("Transaction successful! 🎉")
-      setloading_spin(false)
-
+      toast.success("Transaction successful! 🎉");
+      setloading_spin(false);
     } catch (error) {
       console.log("Error While Buy Ticket", error);
-      setloading_spin(false)
-      toast.error("Transaction failed")
-
+      setloading_spin(false);
+      toast.error("Transaction failed");
     }
   };
 
   const selectWinner = async (id) => {
     try {
-      setloading_spin(true)
-      let acc = await loadWeb3();
-      const web3 = window.web3;
-      let loteryContractOf = new web3.eth.Contract(
-        loteryContractAbi,
-        loteryContractAddress
+      let res = await axios.post(
+        "https://winner.archiecoin.online/SelectWinner",
+        {
+          indexNo: id,
+        }
       );
-      const Owner = await loteryContractOf.methods.owner().call();
-      if (Owner == acc) {
-        await loteryContractOf.methods.selectWinner(id).send({
-          from: acc,
-        });
-
-        toast.success("Transaction successful! 🎉");
-      } else {
-        toast.error("Only Owner Call This Function");
-      setloading_spin(false)
-
-      }
+      console.log("Res", res);
     } catch (e) {
-      console.log(e);
-      toast.success("Transaction failed")
-      setloading_spin(false)
-
-
+      console.log("Call Api", e);
     }
   };
 
@@ -310,180 +298,34 @@ const Landing_slider = ({ setloading_spin }) => {
                     </>
                   </a>
 
-                  <button
+                  {/* <button
                     className="custom_button_Owner"
                     onClick={() => {
                       selectWinner(index + 1);
                     }}
                   >
                     Select Winner
-                  </button>
+                  </button> */}
 
                   <div className="next-draw">
                     <span className="text">Next Draw :</span>
                     <div className="time">
                       <img src={time} alt="" />
-                      {index == 0 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 1 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 2 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 3 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800 * 2)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 4 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800 * 3)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 5 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(604800 * 3)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 6 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(86400 * 30)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 7 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(86400 * 35)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 8 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(86400 * 50)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 9 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(86400 * 60)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 10 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={Number(item.currenttime) + Number(86400 * 90)}
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 11 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={
-                              Number(item.currenttime) + Number(86400 * 180)
-                            }
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 12 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={
-                              Number(item.currenttime) + Number(86400 * 270)
-                            }
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 13 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={
-                              Number(item.currenttime) + Number(86400 * 300)
-                            }
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : index == 14 ? (
-                        Number(item.noOfBuyTickets) > 0 ? (
-                          <Timer
-                            time={
-                              Number(item.currenttime) + Number(86400 * 360)
-                            }
-                          />
-                        ) : (
-                          <>
-                            <h6>0 Days 00:00:00</h6>
-                          </>
-                        )
-                      ) : Number(item.noOfBuyTickets) > 0 ? (
+                      {count !== 0 ? (
+                        <></>
+                      ) : item.time != 0 &&
+                        item.time != undefined &&
+                        item.time <
+                          Math.floor(new Date().getTime() / 1000.0) ? (
+                        setcount(1),
+                        selectWinner(index + 1)
+                      ) : (
+                        console.log("Zro", item.time)
+                      )}
+
+                      {Number(item.noOfBuyTickets) > 0 ? (
                         <Timer
-                          time={Number(item.currenttime) + Number(86400 * 365)}
+                          time={item.time == 1 ? "1676718650" : item.time}
                         />
                       ) : (
                         <>

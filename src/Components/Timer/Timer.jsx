@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Countdown from "react-countdown";
 
@@ -16,9 +17,13 @@ export default function Timer(props) {
     );
   };
   // Renderer callback with condition
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+  const renderer =  ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-
+      // props.setCompeletedtime(completed)
+      // let res= await axios.post('https://winner.archiecoin.online/SelectWinner',{
+      //       "indexNo":2
+      //     })
+      //     console.log("Res",res);
       return <Completionist />;
     } else {
       return (
