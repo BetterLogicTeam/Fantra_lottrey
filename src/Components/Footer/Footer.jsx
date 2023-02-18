@@ -17,17 +17,17 @@ function Footer() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="footer-top-area">
-                  <div className="left">
+                  {/* <div className="left">
                     <a href="#">
                       <img src={app_store_btn} alt="" />
                     </a>
                     <a href="#">
                       <img src={goole_play_btn} alt="" />
                     </a>
-                  </div>
+                  </div> */}
                   <div className="right">
                     <ul className="links">
-                    <li>
+                      <li>
                         <Link to="/">
                           <a href="#">Home</a>
                         </Link>
