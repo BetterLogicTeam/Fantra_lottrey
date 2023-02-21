@@ -20,6 +20,8 @@ import Contact from './Components/Contact/Contact';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Collection from './Components/Collection/Collection';
+import ScrollUpButton from "react-scroll-up-button";
 
 function App() {
   return (
@@ -27,12 +29,14 @@ function App() {
       <BrowserRouter>
         <ToastContainer />
         <Header />
+        <ScrollUpButton />
         <Routes>
           <Route path="/" element={<Landing />} />
           {/* <Route path="/Lottery" element={<Lottery />} /> */}
           <Route path="/Results" element={<Results />} />
           <Route path="/About" element={<About />} />
           <Route path="/Faq" element={<Faq />} />
+          <Route path="/Collection" element={<Collection />} />
           {/* <Route path="/Blog" element={<Blog />} /> */}
           {/* <Route path="/Blog_details" element={<Blog_details />} /> */}
           {/* <Route path="/Contact" element={<Contact />} /> */}

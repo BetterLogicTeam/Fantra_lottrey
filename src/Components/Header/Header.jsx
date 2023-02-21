@@ -57,6 +57,11 @@ function Header() {
                     <a href="">Faq</a>
                   </li>
                 </Link>
+                <Link className="leenk" to="/Collection">
+                  <li>
+                    <a href="">Collection</a>
+                  </li>
+                </Link>
               </ul>
               <div className="right-tools"></div>
               <div className="header-bar d-lg-none">
