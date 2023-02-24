@@ -63,7 +63,7 @@ function Footer() {
               <div className="col-lg-6 align-self-center">
                 <div className="copyr-text">
                   <span>Copyright © 2020.All Rights Reserved By</span>
-                  <a href="#"> Fantra</a>
+                  <a href="#"> "Luck Me" ByFantra</a>
                 </div>
               </div>
               <div className="col-lg-6 align-self-center">

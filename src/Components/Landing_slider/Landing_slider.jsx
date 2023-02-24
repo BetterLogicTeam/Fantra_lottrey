@@ -43,7 +43,7 @@ const Landing_slider = ({ setloading_spin }) => {
 
   const getInitialValue = async () => {
     let acc = await loadWeb3();
-    console.log("Compeletedtime", Compeletedtime);
+
     const webSupply = new Web3(
       "https://data-seed-prebsc-1-s1.binance.org:8545"
     );
@@ -56,6 +56,9 @@ const Landing_slider = ({ setloading_spin }) => {
       loteryTokenAbi,
       loteryTokenAddress
     );
+
+    let showWinners = await loteryContractOf.methods.showWinners(1).call()
+    console.log("showWinners",showWinners);
 
     let arr = [];
     for (let i = 1; i < 17; i++) {
@@ -80,7 +83,7 @@ const Landing_slider = ({ setloading_spin }) => {
 
       arr.push(obj);
     }
-    console.log("arr", arr);
+   
 
     setCardData([...arr]);
   };
@@ -88,7 +91,7 @@ const Landing_slider = ({ setloading_spin }) => {
   useEffect(() => {
     getInitialValue();
     // pricePrToken = window.web3.utils.fromWei(pricePrToken, "ether")
-  }, []);
+  });
 
   const buyTickets = async (id) => {
     try {
@@ -115,7 +118,16 @@ const Landing_slider = ({ setloading_spin }) => {
       let buyToken = await loteryContractOf.methods.plans(id, 10).send({
         from: acc,
       });
+      let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
+        userAddress: acc,
+        time: Math.floor(new Date().getTime() / 1000.0),
+        card_Number: id,
+        position: id + 1,
+      });
+
+      console.log("Lotter_invester", res);
       toast.success("Transaction successful! 🎉");
+
       setloading_spin(false);
     } catch (error) {
       console.log("Error While Buy Ticket", error);
@@ -124,15 +136,50 @@ const Landing_slider = ({ setloading_spin }) => {
     }
   };
 
+  const Updatestate = async (id) => {
+     setcount(1);
+     setTimeout(() => {
+      selectWinner(id);
+    }, 10000);
+  };
+
   const selectWinner = async (id) => {
     try {
-      let res = await axios.post(
-        "https://winner.archiecoin.online/SelectWinner",
-        {
-          indexNo: id,
+      // if (count == 1) {
+        console.log("Count",id);
+        let res = await axios.post(
+          "https://winner.archiecoin.online/SelectWinner",
+          {
+            indexNo: id,
+          }
+        );
+        console.log("SelectWinner", res);
+        if (res.data.success == true) {
+          const webSupply = new Web3(
+            "https://data-seed-prebsc-1-s1.binance.org:8545"
+          );
+          const web3 = window.web3;
+          let loteryContractOf = new webSupply.eth.Contract(
+            loteryContractAbi,
+            loteryContractAddress
+          );
+
+          let showWinners = await loteryContractOf.methods
+            .showWinners(id)
+            .call();
+          for (let i = 0; i < showWinners[0].length; i++) {
+            let res = await axios.post("https://winner.archiecoin.online/Winner_List", {
+              userAddress: showWinners[0][i],
+              time: Math.floor(new Date().getTime() / 1000.0),
+              card_Number: id,
+              position: id,
+              reward: showWinners[1][i],
+            });
+            console.log("showWinners", res);
+          }
         }
-      );
-      console.log("Res", res);
+        // setcount(0);
+      // }
     } catch (e) {
       console.log("Call Api", e);
     }
@@ -317,15 +364,16 @@ const Landing_slider = ({ setloading_spin }) => {
                         item.time != undefined &&
                         item.time <
                           Math.floor(new Date().getTime() / 1000.0) ? (
-                        setcount(1),
-                        selectWinner(index + 1)
+                        Updatestate(index + 1)
                       ) : (
-                        console.log("Zro", item.time)
+                        // console.log("Zro", index + 1)
+                        <></>
                       )}
 
                       {Number(item.noOfBuyTickets) > 0 ? (
                         <Timer
                           time={item.time == 1 ? "1676718650" : item.time}
+                          setcount={setcount}
                         />
                       ) : (
                         <>
@@ -345,3 +393,6 @@ const Landing_slider = ({ setloading_spin }) => {
 };
 
 export default Landing_slider;
+
+
+// how to view PDf file in react js

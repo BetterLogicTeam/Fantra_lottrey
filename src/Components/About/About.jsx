@@ -23,6 +23,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Button, Popover } from "antd";
 import { Link } from "react-router-dom";
 import Testimonial_data from "../Testimonial_data/Testimonial_data";
+import Header from "../Header/Header";
 const content = (
   <div>
     <p>Content</p>
@@ -33,6 +34,8 @@ const content = (
 function About() {
   return (
     <div>
+        <Header />
+
       <section className="breadcrumb-area">
         <div className="container">
           <div className="content">

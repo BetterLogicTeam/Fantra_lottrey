@@ -118,3 +118,18 @@ tr{
         padding-bottom: 17px !important;
     }
 }
+
+.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-image: linear-gradient(to left, #e44177, #e94a6d, #ed5463, #ee5f59, #ee6a51) !important;
+
+}
+
+ .title_admin {
+    font-size: 55px;
+    line-height: 65px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+    color: #5949b3;
+    text-transform: uppercase;
+}

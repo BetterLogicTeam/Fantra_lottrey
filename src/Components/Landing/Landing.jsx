@@ -19,6 +19,7 @@ import {
 } from "../../utilies/Bsc_contract";
 import Web3 from "web3";
 import Loading_spinner from "../Loading/Loading_spinner";
+import Header from "../Header/Header";
 
 function Landing() {
   const [loading_spin, setloading_spin] = useState(false)
@@ -48,6 +49,8 @@ function Landing() {
 
   return (
     <div>
+        <Header />
+
       {
         loading_spin &&
         <Loading_spinner/>

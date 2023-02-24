@@ -4,12 +4,15 @@ import Result_check from '../Result_check/Result_check';
 import result from "../../Assets/images/result.jpg";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 
 
 
 function Results() {
   return (
     <div>
+        <Header />
+
         <section class="breadcrumb-area">
         <div class="container">
             <div class="content">

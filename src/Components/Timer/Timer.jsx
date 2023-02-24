@@ -4,10 +4,13 @@ import Countdown from "react-countdown";
 
 export default function Timer(props) {
   const [Timer, setTimer] = useState("1676286402")
+  const [flag, setflag] = useState(false)
+
 
 
   const Completionist = () => {
-
+    console.log("completed");
+  
     return (
       <>
         <h6>Time Ended</h6>
@@ -19,13 +22,14 @@ export default function Timer(props) {
   // Renderer callback with condition
   const renderer =  ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      // props.setCompeletedtime(completed)
-      // let res= await axios.post('https://winner.archiecoin.online/SelectWinner',{
-      //       "indexNo":2
-      //     })
-      //     console.log("Res",res);
+      // setflag(true)
+      
+      
+     
       return <Completionist />;
     } else {
+  
+
       return (
         <div className="text_days fs-5 ">
           <h6>

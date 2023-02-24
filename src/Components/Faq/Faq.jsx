@@ -4,10 +4,12 @@ import Faq_accord from "../Faq_accord/Faq_accord";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "./Faq.css";
+import Header from "../Header/Header";
 
 function Faq() {
   return (
     <div>
+        <Header />
       <section class="breadcrumb-area">
         <div class="container">
           <div class="content">

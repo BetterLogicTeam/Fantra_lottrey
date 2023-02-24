@@ -22,24 +22,28 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Collection from './Components/Collection/Collection';
 import ScrollUpButton from "react-scroll-up-button";
+import PrivateRoutes from './Components/Private';
+import PublicRoute from './Components/Public';
 
 function App() {
+  // localStorage.setItem("UserAuth",false)
+
   return (
     <div className="">
+      
       <BrowserRouter>
         <ToastContainer />
-        <Header />
         <ScrollUpButton />
         <Routes>
-          <Route path="/" element={<Landing />} />
-          {/* <Route path="/Lottery" element={<Lottery />} /> */}
-          <Route path="/Results" element={<Results />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Faq" element={<Faq />} />
-          <Route path="/Collection" element={<Collection />} />
-          {/* <Route path="/Blog" element={<Blog />} /> */}
-          {/* <Route path="/Blog_details" element={<Blog_details />} /> */}
-          {/* <Route path="/Contact" element={<Contact />} /> */}
+          <Route path="/" element={ <PublicRoute><Landing /></PublicRoute>  } />
+          <Route path="/Results" element={ <PublicRoute><Results /></PublicRoute> } />
+          <Route path="/About" element={<PublicRoute><About /></PublicRoute> } />
+          <Route path="/Faq" element={ <PublicRoute><Faq /></PublicRoute> } />
+          <Route element={<PrivateRoutes />}>
+
+          <Route path="/admin_panel" element={<Collection /> } />
+            </Route>
+
         </Routes>
         <Footer />
       </BrowserRouter>
