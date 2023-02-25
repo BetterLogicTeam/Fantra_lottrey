@@ -62,8 +62,8 @@ function Footer() {
             <div className="row">
               <div className="col-lg-6 align-self-center">
                 <div className="copyr-text">
-                  <span>Copyright © 2020.All Rights Reserved By</span>
-                  <a href="#"> "Luck Me" ByFantra</a>
+                  <span>Copyright © 2020.All Rights Reserved By </span>
+                  <a href="#"> "Lucky Me"</a>
                 </div>
               </div>
               <div className="col-lg-6 align-self-center">

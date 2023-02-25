@@ -122,7 +122,7 @@ function Header() {
                       </a>
                       <div className="d-flex">
                         <Connect_wallet_modal />
-                        {isuser == true ? (
+                        {/* {isuser == true ? (
                           <button
                             class="custom-button2 navmainbt"
                             onClick={() => (history("/"),localStorage.removeItem("UserAuth"))}
@@ -136,7 +136,7 @@ function Header() {
                           >
                             Admin Panel
                           </button>
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ function Header() {
                       </a>
                       <div className="d-flex">
                         <Connect_wallet_modal />
-                        {isLogin == true ? (
+                        {/* {isLogin == true ? (
                           <button
                             class="custom-button2 navmainbt"
                             onClick={() => history("/")}
@@ -206,7 +206,7 @@ function Header() {
                           >
                             Admin Panel
                           </button>
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>
