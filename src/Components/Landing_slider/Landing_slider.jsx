@@ -109,13 +109,13 @@ const Landing_slider = ({ setloading_spin }) => {
       );
 
       let approve = await loteryTokenof.methods
-        .approve(loteryContractAddress, 1000000)
+        .approve(loteryContractAddress, "1000000000000000000")
         .send({
           from: acc,
         });
       toast.success("Approve successful! 🎉");
 
-      let buyToken = await loteryContractOf.methods.plans(id, 10).send({
+      let buyToken = await loteryContractOf.methods.plans(id, "1000000000000000000").send({
         from: acc,
       });
       let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
@@ -210,6 +210,7 @@ const Landing_slider = ({ setloading_spin }) => {
         className="mySwiper swipper_paddding"
       >
         {cardData.map((item, index, array) => {
+          console.log("item.time",item.time);
           return (
             <SwiperSlide className="single-draw">
               <div className="item">
@@ -366,20 +367,20 @@ const Landing_slider = ({ setloading_spin }) => {
                           Math.floor(new Date().getTime() / 1000.0) ? (
                         Updatestate(index + 1)
                       ) : (
-                        // console.log("Zro", index + 1)
+                     
                         <></>
                       )}
 
-                      {Number(item.noOfBuyTickets) > 0 ? (
+                      {item?.time !== undefined ? (
                         <Timer
-                          time={item.time == 1 ? "1676718650" : item.time}
+                          time={item?.time == 1 ? "1676718650" : item?.time}
                           setcount={setcount}
                         />
                       ) : (
                         <>
                           <h6>0 Days 00:00:00</h6>
                         </>
-                      )}
+                      )}  
                     </div>
                   </div>
                 </div>
