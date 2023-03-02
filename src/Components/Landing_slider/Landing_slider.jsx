@@ -38,7 +38,7 @@ const Landing_slider = ({ setloading_spin }) => {
     "",
     "",
   ]);
-  const [Compeletedtime, setCompeletedtime] = useState(false);
+  const [card_Postion, setcard_Postion] = useState("All");
   const [count, setcount] = useState(0);
 
   const getInitialValue = async () => {
@@ -57,8 +57,8 @@ const Landing_slider = ({ setloading_spin }) => {
       loteryTokenAddress
     );
 
-    let showWinners = await loteryContractOf.methods.showWinners(1).call()
-    console.log("showWinners",showWinners);
+    let showWinners = await loteryContractOf.methods.showWinners(1).call();
+    console.log("showWinners", showWinners);
 
     let arr = [];
     for (let i = 1; i < 17; i++) {
@@ -83,7 +83,6 @@ const Landing_slider = ({ setloading_spin }) => {
 
       arr.push(obj);
     }
-   
 
     setCardData([...arr]);
   };
@@ -93,8 +92,43 @@ const Landing_slider = ({ setloading_spin }) => {
     // pricePrToken = window.web3.utils.fromWei(pricePrToken, "ether")
   });
 
-  const buyTickets = async (id) => {
+  const buyTickets = async (index) => {
     try {
+      let card_Number = "";
+      if (index == 1) {
+        card_Number = "10x";
+      } else if (index == 2) {
+        card_Number = "20x";
+      } else if (index == 3) {
+        card_Number = "50x";
+      } else if (index == 4) {
+        card_Number = "100x";
+      } else if (index == 5) {
+        card_Number = "250x";
+      } else if (index == 6) {
+        card_Number = "500x";
+      } else if (index == 7) {
+        card_Number = "1000x";
+      } else if (index == 8) {
+        card_Number = "2500x";
+      } else if (index == 9) {
+        card_Number = "5000x";
+      } else if (index == 10) {
+        card_Number = "10000x";
+      } else if (index == 11) {
+        card_Number = "25000x";
+      } else if (index == 12) {
+        card_Number = "50000x";
+      } else if (index == 13) {
+        card_Number = "100000x";
+      } else if (index == 14) {
+        card_Number = "250000x";
+      } else if (index == 15) {
+        card_Number = "500000x";
+      } else if (index == 16) {
+        card_Number = "1000000x";
+      }
+
       setloading_spin(true);
       let acc = await loadWeb3();
 
@@ -115,15 +149,21 @@ const Landing_slider = ({ setloading_spin }) => {
         });
       toast.success("Approve successful! 🎉");
 
-      let buyToken = await loteryContractOf.methods.plans(id, "1000000000000000000").send({
-        from: acc,
-      });
-      let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
-        userAddress: acc,
-        time: Math.floor(new Date().getTime() / 1000.0),
-        card_Number: id,
-        position: id + 1,
-      });
+      let buyToken = await loteryContractOf.methods
+        .plans(index, "1000000000000000000")
+        .send({
+          from: acc,
+        });
+      console.log("card_Postion", card_Number);
+      let res = await axios.post(
+        "http://localhost:3344/Lotter_invester",
+        {
+          userAddress: acc,
+          time: (new Date().toString()).slice(0,15),
+          card_Number: card_Number,
+          position: "1000000000000000000",
+        }
+      );
 
       console.log("Lotter_invester", res);
       toast.success("Transaction successful! 🎉");
@@ -137,8 +177,8 @@ const Landing_slider = ({ setloading_spin }) => {
   };
 
   const Updatestate = async (id) => {
-     setcount(1);
-     setTimeout(() => {
+    setcount(1);
+    setTimeout(() => {
       selectWinner(id);
     }, 10000);
   };
@@ -146,39 +186,40 @@ const Landing_slider = ({ setloading_spin }) => {
   const selectWinner = async (id) => {
     try {
       // if (count == 1) {
-        console.log("Count",id);
-        let res = await axios.post(
-          "https://winner.archiecoin.online/SelectWinner",
-          {
-            indexNo: id,
-          }
+      console.log("Count", id);
+      let res = await axios.post(
+        "https://winner.archiecoin.online/SelectWinner",
+        {
+          indexNo: id,
+        }
+      );
+      console.log("SelectWinner", res);
+      if (res.data.success == true) {
+        const webSupply = new Web3(
+          "https://data-seed-prebsc-1-s1.binance.org:8545"
         );
-        console.log("SelectWinner", res);
-        if (res.data.success == true) {
-          const webSupply = new Web3(
-            "https://data-seed-prebsc-1-s1.binance.org:8545"
-          );
-          const web3 = window.web3;
-          let loteryContractOf = new webSupply.eth.Contract(
-            loteryContractAbi,
-            loteryContractAddress
-          );
+        const web3 = window.web3;
+        let loteryContractOf = new webSupply.eth.Contract(
+          loteryContractAbi,
+          loteryContractAddress
+        );
 
-          let showWinners = await loteryContractOf.methods
-            .showWinners(id)
-            .call();
-          for (let i = 0; i < showWinners[0].length; i++) {
-            let res = await axios.post("https://winner.archiecoin.online/Winner_List", {
+        let showWinners = await loteryContractOf.methods.showWinners(id).call();
+        for (let i = 0; i < showWinners[0].length; i++) {
+          let res = await axios.post(
+            "https://winner.archiecoin.online/Winner_List",
+            {
               userAddress: showWinners[0][i],
               time: Math.floor(new Date().getTime() / 1000.0),
               card_Number: id,
               position: id,
               reward: showWinners[1][i],
-            });
-            console.log("showWinners", res);
-          }
+            }
+          );
+          console.log("showWinners", res);
         }
-        // setcount(0);
+      }
+      // setcount(0);
       // }
     } catch (e) {
       console.log("Call Api", e);
@@ -210,7 +251,7 @@ const Landing_slider = ({ setloading_spin }) => {
         className="mySwiper swipper_paddding"
       >
         {cardData.map((item, index, array) => {
-          console.log("item.time",item.time);
+          console.log("item.time", item.time);
           return (
             <SwiperSlide className="single-draw">
               <div className="item">
@@ -218,37 +259,37 @@ const Landing_slider = ({ setloading_spin }) => {
                   <p>
                     <b>
                       {index == 0 ? (
-                        <>10x</>
+                        <> 10x</>
                       ) : index == 1 ? (
-                        <>20x</>
+                        <> 20x</>
                       ) : index == 2 ? (
-                        <>50x</>
+                        <> 50x</>
                       ) : index == 3 ? (
-                        <>100x</>
+                        <> 100x</>
                       ) : index == 4 ? (
-                        <>250x</>
+                        <> 250x</>
                       ) : index == 5 ? (
-                        <>500x</>
+                        <> 500x</>
                       ) : index == 6 ? (
-                        <>1000x</>
+                        <> 1000x</>
                       ) : index == 7 ? (
-                        <>2500x</>
+                        <> 2500x</>
                       ) : index == 8 ? (
-                        <>5000x</>
+                        <> 5000x</>
                       ) : index == 9 ? (
-                        <>10000x</>
+                        <> 10000x</>
                       ) : index == 10 ? (
-                        <>25000x</>
+                        <> 25000x</>
                       ) : index == 11 ? (
-                        "50000x"
+                        <>50000x</>
                       ) : index == 12 ? (
-                        "100000x"
+                        <>100000x</>
                       ) : index == 13 ? (
-                        "250000x"
+                        <>250000x</>
                       ) : index == 14 ? (
-                        "500000x"
+                        <>500000x</>
                       ) : (
-                        "1000000x"
+                        <>1000000x</>
                       )}
                     </b>
                   </p>
@@ -367,7 +408,6 @@ const Landing_slider = ({ setloading_spin }) => {
                           Math.floor(new Date().getTime() / 1000.0) ? (
                         Updatestate(index + 1)
                       ) : (
-                     
                         <></>
                       )}
 
@@ -380,7 +420,7 @@ const Landing_slider = ({ setloading_spin }) => {
                         <>
                           <h6>0 Days 00:00:00</h6>
                         </>
-                      )}  
+                      )}
                     </div>
                   </div>
                 </div>
@@ -394,6 +434,5 @@ const Landing_slider = ({ setloading_spin }) => {
 };
 
 export default Landing_slider;
-
 
 // how to view PDf file in react js
