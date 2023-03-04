@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import google from "../../Assets/images/google.png";
 import Modal from "react-bootstrap/Modal";
 import { loadWeb3 } from "../../apis/api";
+import { loteryTokenAbi, loteryTokenAddress } from "../../utilies/Bsc_contract";
+import Web3 from "web3";
 
 function MyVerticallyCenteredModal2(props) {
   return (
@@ -77,6 +79,8 @@ function MyVerticallyCenteredModal2(props) {
 const Connect_wallet_modal = () => {
   const [modalShow2, setModalShow2] = React.useState(false);
   let [btnTxt, setBtTxt] = useState("Connect Wallet");
+  let [tokenBalance, settokenBalance] = useState(0);
+
   const getaccount = async () => {
     let acc = await loadWeb3();
     // console.log("ACC=",acc)
@@ -89,30 +93,51 @@ const Connect_wallet_modal = () => {
       let myAcc =
         acc?.substring(0, 4) + "..." + acc?.substring(acc?.length - 4);
       setBtTxt(myAcc);
+
+      const webSupply = new Web3(
+        "https://data-seed-prebsc-1-s1.binance.org:8545"
+      );
+
+      let loteryTokenof = new webSupply.eth.Contract(
+        loteryTokenAbi,
+        loteryTokenAddress
+      );
+
+      let balanceOf = await loteryTokenof.methods.balanceOf(acc).call();
+      settokenBalance(balanceOf.toString());
+      console.log("balanceOf", balanceOf);
     }
   };
   useEffect(() => {
-    getaccount()
+    getaccount();
   });
 
   return (
     <div>
       <div className="right-area">
-        <div className="log-reg-area" variant="">
+        <div className="log-reg-area " variant="">
           <a
             onClick={getaccount}
             // onClick={() => setModalShow2(true)}
             href="#"
-            class="custom-button2 navmainbt"
+            class="custom-button2 navmainbt "
             data-toggle="modal"
             data-target="#loginModal"
           >
             {btnTxt}
           </a>
-          <MyVerticallyCenteredModal2
-            show={modalShow2}
-            onHide={() => setModalShow2(false)}
-          />
+          <a
+            onClick={getaccount}
+            // onClick={() => setModalShow2(true)}
+            style={{marginLeft:"1rem"}}
+            href="#"
+            class="custom-button2 navmainbt "
+            data-toggle="modal"
+            data-target="#loginModal"
+          >
+            Balance:
+            {tokenBalance == 0 ? tokenBalance : tokenBalance.slice(0, 10)}
+          </a>
         </div>
       </div>
     </div>

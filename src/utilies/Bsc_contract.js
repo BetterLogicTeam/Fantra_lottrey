@@ -1,419 +1,310 @@
-export const loteryContractAddress = "0x387C54EA6a0FCFbA8dE47E8892437F21B0fee74C";
-export const loteryContractAbi = [{
-    "inputs": [{
-        "internalType": "contract IBEP20",
-        "name": "_Token",
-        "type": "address"
-    }],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-}, {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": false,
-        "internalType": "address",
-        "name": "count",
-        "type": "address"
-    }],
-    "name": "NewEntry",
-    "type": "event"
-}, {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-    }, {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-    }],
-    "name": "OwnershipTransferred",
-    "type": "event"
-}, {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": false,
-        "internalType": "address",
-        "name": "winner",
-        "type": "address"
-    }, {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-    }],
-    "name": "WinnerSelected",
-    "type": "event"
-}, {
-    "inputs": [],
-    "name": "Token",
-    "outputs": [{
-        "internalType": "contract IBEP20",
-        "name": "",
-        "type": "address"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "_Token",
-        "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-    }],
-    "name": "WithdrawToken",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "_time",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }],
-    "name": "amount_everywinner",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "prise",
-        "type": "uint256"
-    }],
-    "name": "change_prise",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "current_time",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "name": "fin",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "winningamount",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "winners",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "time",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "currenttime",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "received_entry",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "total_entry",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "multiple_entry",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-    }],
-    "name": "plans",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }, {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "name": "playerentry",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "name": "previouslevel",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }],
-    "name": "randomNumberSelector",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }],
-    "name": "selectWinner",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "multipleentry",
-        "type": "uint256"
-    }],
-    "name": "set_multipleentry",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "__time",
-        "type": "uint256"
-    }],
-    "name": "set_time",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "entry",
-        "type": "uint256"
-    }],
-    "name": "set_totalentry",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "winners",
-        "type": "uint256"
-    }],
-    "name": "set_winners",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-    }],
-    "name": "set_winningamount",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_level",
-        "type": "uint256"
-    }],
-    "name": "showWinners",
-    "outputs": [{
-        "internalType": "address[]",
-        "name": "",
-        "type": "address[]"
-    }, {
-        "internalType": "uint256[]",
-        "name": "",
-        "type": "uint256[]"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "total_entries",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "total_invested_amount",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "total_lottery_completed",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "total_reward",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-    }],
-    "name": "transferOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "name": "winning_amount",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-    }],
-    "name": "withdrawBNB",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}]
+export const loteryContractAddress =
+  "0xF78CBA53a1053eE6757cd6dE4692947695d47298";
+export const loteryContractAbi = [
+  {
+    inputs: [
+      { internalType: "contract IBEP20", name: "_Token", type: "address" },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "address",
+        name: "count",
+        type: "address",
+      },
+    ],
+    name: "NewEntry",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "previousOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "address",
+        name: "winner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "WinnerSelected",
+    type: "event",
+  },
+  {
+    inputs: [],
+    name: "Token",
+    outputs: [{ internalType: "contract IBEP20", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "_Token", type: "address" },
+      { internalType: "uint256", name: "_amount", type: "uint256" },
+    ],
+    name: "WithdrawToken",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "_time",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_level", type: "uint256" }],
+    name: "amount_everywinner",
+    outputs: [
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "uint256", name: "", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "prise", type: "uint256" }],
+    name: "change_prise",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "current_time",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "fin",
+    outputs: [
+      { internalType: "uint256", name: "winningamount", type: "uint256" },
+      { internalType: "uint256", name: "winners", type: "uint256" },
+      { internalType: "uint256", name: "time", type: "uint256" },
+      { internalType: "uint256", name: "currenttime", type: "uint256" },
+      { internalType: "uint256", name: "received_entry", type: "uint256" },
+      { internalType: "uint256", name: "total_entry", type: "uint256" },
+      { internalType: "uint256", name: "multiple_entry", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "lottey_detail",
+    outputs: [
+      { internalType: "uint256", name: "lottery_entries", type: "uint256" },
+      {
+        internalType: "uint256",
+        name: "lottery_invested_amount",
+        type: "uint256",
+      },
+      { internalType: "uint256", name: "lottery_completed", type: "uint256" },
+      { internalType: "uint256", name: "lottery_reward", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "_entry", type: "uint256" },
+    ],
+    name: "plans",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "address", name: "", type: "address" },
+    ],
+    name: "playerentry",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "previouslevel",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_level", type: "uint256" }],
+    name: "randomNumberSelector",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_level", type: "uint256" }],
+    name: "selectWinner",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "multipleentry", type: "uint256" },
+    ],
+    name: "set_multipleentry",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "__time", type: "uint256" },
+    ],
+    name: "set_time",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "entry", type: "uint256" },
+    ],
+    name: "set_totalentry",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "winners", type: "uint256" },
+    ],
+    name: "set_winners",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_level", type: "uint256" },
+      { internalType: "uint256", name: "_amount", type: "uint256" },
+    ],
+    name: "set_winningamount",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_level", type: "uint256" }],
+    name: "showWinners",
+    outputs: [
+      { internalType: "address[]", name: "", type: "address[]" },
+      { internalType: "uint256[]", name: "", type: "uint256[]" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "total_entries",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "total_invested_amount",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "total_lottery_completed",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "total_reward",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "winning_amount",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
+    name: "withdrawBNB",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
 export const loteryTokenAddress = "0x208F521710620d417E9f35a37f107e360f4A7c3d";
 export const loteryTokenAbi = [{
     "inputs": [],

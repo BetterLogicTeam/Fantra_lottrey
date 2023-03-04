@@ -30,19 +30,19 @@ function App() {
 
   return (
     <div className="">
-      
+
       <BrowserRouter>
         <ToastContainer />
         <ScrollUpButton />
         <Routes>
-          <Route path="/" element={ <PublicRoute><Landing /></PublicRoute>  } />
-          <Route path="/Results" element={ <PublicRoute><Results /></PublicRoute> } />
-          <Route path="/About" element={<PublicRoute><About /></PublicRoute> } />
-          <Route path="/Faq" element={ <PublicRoute><Faq /></PublicRoute> } />
+          <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
+          <Route path="/Results" element={<PublicRoute><Results /></PublicRoute>} />
+          <Route path="/About" element={<PublicRoute><About /></PublicRoute>} />
+          <Route path="/Faq" element={<PublicRoute><Faq /></PublicRoute>} />
           <Route element={<PrivateRoutes />}>
 
-          <Route path="/admin_panel" element={<Collection /> } />
-            </Route>
+            <Route path="/admin_panel" element={<Collection />} />
+          </Route>
 
         </Routes>
         <Footer />

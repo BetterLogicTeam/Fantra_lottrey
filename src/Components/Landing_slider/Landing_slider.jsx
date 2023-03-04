@@ -40,13 +40,20 @@ const Landing_slider = ({ setloading_spin }) => {
   ]);
   const [card_Postion, setcard_Postion] = useState("All");
   const [count, setcount] = useState(0);
+  const [value, setvalue] = useState(1);
 
+  const increment = async () => {
+    setvalue(value + 1);
+  };
+
+  const decrement = async () => {
+    setvalue(value - 1);
+  };
+
+  const webSupply = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
   const getInitialValue = async () => {
     let acc = await loadWeb3();
 
-    const webSupply = new Web3(
-      "https://data-seed-prebsc-1-s1.binance.org:8545"
-    );
     const web3 = window.web3;
     let loteryContractOf = new webSupply.eth.Contract(
       loteryContractAbi,
@@ -58,12 +65,12 @@ const Landing_slider = ({ setloading_spin }) => {
     );
 
     let showWinners = await loteryContractOf.methods.showWinners(1).call();
-    console.log("showWinners", showWinners);
+    // console.log("showWinners", showWinners);
 
     let arr = [];
     for (let i = 1; i < 17; i++) {
       let cardInfo = await loteryContractOf.methods.fin(i).call();
-      // console.log("cardInfo", cardInfo);
+      // console.log("cardInfo", cardInfo.lottery_count);
 
       let playerEntry = await loteryContractOf.methods
         .playerentry(i, acc)
@@ -77,6 +84,8 @@ const Landing_slider = ({ setloading_spin }) => {
         totalEntry: cardInfo.total_entry,
         currenttime: cardInfo.currenttime,
         time: cardInfo.time,
+        lottery_count: cardInfo.lottery_count,
+        multiple_entry: cardInfo.multiple_entry,
       };
 
       // console.log("playerEntry", obj);
@@ -142,30 +151,36 @@ const Landing_slider = ({ setloading_spin }) => {
         loteryTokenAddress
       );
 
+      let amount = value * 1;
+      amount = web3.utils.toWei(amount.toString());
+      console.log("amount", amount);
+
       let approve = await loteryTokenof.methods
-        .approve(loteryContractAddress, "1000000000000000000")
+        .approve(loteryContractAddress, amount.toString())
         .send({
           from: acc,
         });
       toast.success("Approve successful! 🎉");
 
       let buyToken = await loteryContractOf.methods
-        .plans(index, "1000000000000000000")
+        .plans(index, value.toString())
         .send({
           from: acc,
         });
-      console.log("card_Postion", card_Number);
-      let res = await axios.post(
-        "http://localhost:3344/Lotter_invester",
-        {
-          userAddress: acc,
-          time: (new Date().toString()).slice(0,15),
-          card_Number: card_Number,
-          position: "1000000000000000000",
-        }
-      );
+      let cardInfo = await loteryContractOf.methods.fin(index).call();
+      console.log("card_Postion", cardInfo.lottery_count);
 
-      console.log("Lotter_invester", res);
+      for (let i = 1; i <= value; i++) {
+        let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
+          userAddress: acc,
+          time: new Date().toString().slice(0, 15),
+          card_Number: card_Number,
+          position: value * 1,
+          gameNumber: cardInfo.lottery_count,
+        });
+        console.log("Lotter_invester", res);
+      }
+
       toast.success("Transaction successful! 🎉");
 
       setloading_spin(false);
@@ -187,13 +202,10 @@ const Landing_slider = ({ setloading_spin }) => {
     try {
       // if (count == 1) {
       console.log("Count", id);
-      let res = await axios.post(
-        "https://winner.archiecoin.online/SelectWinner",
-        {
-          indexNo: id,
-        }
-      );
-      console.log("SelectWinner", res);
+      let res = await axios.post("https://winner.archiecoin.online/SelectWinner", {
+        indexNo: id,
+      });
+      console.log("SelectWinner🎉", res);
       if (res.data.success == true) {
         const webSupply = new Web3(
           "https://data-seed-prebsc-1-s1.binance.org:8545"
@@ -203,17 +215,19 @@ const Landing_slider = ({ setloading_spin }) => {
           loteryContractAbi,
           loteryContractAddress
         );
-
+        let cardInfo = await loteryContractOf.methods.fin(id).call();
+        console.log("card_Postion", cardInfo.lottery_count);
         let showWinners = await loteryContractOf.methods.showWinners(id).call();
         for (let i = 0; i < showWinners[0].length; i++) {
           let res = await axios.post(
             "https://winner.archiecoin.online/Winner_List",
             {
               userAddress: showWinners[0][i],
-              time: Math.floor(new Date().getTime() / 1000.0),
+              time: new Date().toString().slice(0, 15),
               card_Number: id,
-              position: id,
+              position: value * 1,
               reward: showWinners[1][i],
+              gameNumber: cardInfo.lottery_count,
             }
           );
           console.log("showWinners", res);
@@ -251,7 +265,6 @@ const Landing_slider = ({ setloading_spin }) => {
         className="mySwiper swipper_paddding"
       >
         {cardData.map((item, index, array) => {
-          console.log("item.time", item.time);
           return (
             <SwiperSlide className="single-draw">
               <div className="item">
@@ -343,49 +356,71 @@ const Landing_slider = ({ setloading_spin }) => {
                       <span class="span1">Winner : {item?.winner}</span>{" "}
                     </h4>
                   </div>
-                  <a
-                    class="custom-button1"
-                    onClick={() => {
-                      buyTickets(index + 1);
-                    }}
-                  >
-                    Buy Ticket : {item.noOfBuyTickets}/
+                  <div className="d-flex">
+                    {/* <button className="" onClick={()=>increment()}>-</button> */}
+                    <input
+                      type="number"
+                      placeholder="Enter Lottery Count"
+                      className="input_cont"
+                      onChange={(e) => setvalue(e.target.value)}
+                    />
+                    {/* <button onClick={()=>decrement()}>+</button> */}
+                  </div>
+
+                  {item.noOfBuyTickets == undefined ? (
                     <>
-                      {index == 0 ? (
-                        <>10</>
-                      ) : index == 1 ? (
-                        <>10</>
-                      ) : index == 2 ? (
-                        <>10</>
-                      ) : index == 3 ? (
-                        <>20</>
-                      ) : index == 4 ? (
-                        <>50</>
-                      ) : index == 5 ? (
-                        <>50</>
-                      ) : index == 6 ? (
-                        <>80</>
-                      ) : index == 7 ? (
-                        <>100</>
-                      ) : index == 8 ? (
-                        <>200</>
-                      ) : index == 9 ? (
-                        <>400</>
-                      ) : index == 10 ? (
-                        "1000"
-                      ) : index == 11 ? (
-                        "2000"
-                      ) : index == 12 ? (
-                        "3000"
-                      ) : index == 13 ? (
-                        "6000"
-                      ) : index == 14 ? (
-                        "11000"
-                      ) : (
-                        "15000"
-                      )}
+                      <a class="custom-button1">Waiting...</a>
                     </>
-                  </a>
+                  ) : (
+                    <>
+                      <a
+                        class="custom-button1"
+                        onClick={() => {
+                          Number(item.noOfBuyTickets) + Number(value) >
+                          Number(item.multiple_entry)
+                            ? toast.error("Multiple Entries limit exceeded")
+                            : buyTickets(index + 1);
+                        }}
+                      >
+                        Buy Ticket : {item.noOfBuyTickets}/
+                        <>
+                          {index == 0 ? (
+                            <>10</>
+                          ) : index == 1 ? (
+                            <>10</>
+                          ) : index == 2 ? (
+                            <>10</>
+                          ) : index == 3 ? (
+                            <>20</>
+                          ) : index == 4 ? (
+                            <>50</>
+                          ) : index == 5 ? (
+                            <>50</>
+                          ) : index == 6 ? (
+                            <>80</>
+                          ) : index == 7 ? (
+                            <>100</>
+                          ) : index == 8 ? (
+                            <>200</>
+                          ) : index == 9 ? (
+                            <>400</>
+                          ) : index == 10 ? (
+                            "1000"
+                          ) : index == 11 ? (
+                            "2000"
+                          ) : index == 12 ? (
+                            "3000"
+                          ) : index == 13 ? (
+                            "6000"
+                          ) : index == 14 ? (
+                            "11000"
+                          ) : (
+                            "15000"
+                          )}
+                        </>
+                      </a>
+                    </>
+                  )}
 
                   {/* <button
                     className="custom_button_Owner"
