@@ -13,7 +13,7 @@ export default function Timer(props) {
   
     return (
       <>
-        <h6>Time Ended</h6>
+        <h6>Round Ended</h6>
 
         {/* <div className="text_days fs-5 ">Presale ended!</div> */}
       </>

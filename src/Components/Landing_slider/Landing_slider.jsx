@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import Countdown from "react-countdown";
 import Timer from "../Timer/Timer";
 import axios from "axios";
+import moment from "moment";
 
 const Landing_slider = ({ setloading_spin }) => {
   const [cardData, setCardData] = useState([
@@ -102,6 +103,8 @@ const Landing_slider = ({ setloading_spin }) => {
   });
 
   const buyTickets = async (index) => {
+    console.log("card_Postion", moment(new Date()).format("YYYY-MM-DD"));
+
     try {
       let card_Number = "";
       if (index == 1) {
@@ -167,16 +170,15 @@ const Landing_slider = ({ setloading_spin }) => {
         .send({
           from: acc,
         });
-      let cardInfo = await loteryContractOf.methods.fin(index).call();
-      console.log("card_Postion", cardInfo.lottery_count);
+      let cardInfo = await loteryContractOf.methods.lottey_detail(index).call();
 
       for (let i = 1; i <= value; i++) {
         let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
           userAddress: acc,
-          time: new Date().toString().slice(0, 15),
+          time: moment(new Date()).format("YYYY-MM-DD"),
           card_Number: card_Number,
           position: value * 1,
-          gameNumber: cardInfo.lottery_count,
+          gameNumber: cardInfo.lottery_completed,
         });
         console.log("Lotter_invester", res);
       }
@@ -201,6 +203,40 @@ const Landing_slider = ({ setloading_spin }) => {
   const selectWinner = async (id) => {
     try {
       // if (count == 1) {
+        let card_Number = "";
+        if (id == 1) {
+          card_Number = "10x";
+        } else if (id == 2) {
+          card_Number = "20x";
+        } else if (id == 3) {
+          card_Number = "50x";
+        } else if (id == 4) {
+          card_Number = "100x";
+        } else if (id == 5) {
+          card_Number = "250x";
+        } else if (id == 6) {
+          card_Number = "500x";
+        } else if (id == 7) {
+          card_Number = "1000x";
+        } else if (id == 8) {
+          card_Number = "2500x";
+        } else if (id == 9) {
+          card_Number = "5000x";
+        } else if (id == 10) {
+          card_Number = "10000x";
+        } else if (id == 11) {
+          card_Number = "25000x";
+        } else if (id == 12) {
+          card_Number = "50000x";
+        } else if (id == 13) {
+          card_Number = "100000x";
+        } else if (id == 14) {
+          card_Number = "250000x";
+        } else if (id == 15) {
+          card_Number = "500000x";
+        } else if (id == 16) {
+          card_Number = "1000000x";
+        }
       console.log("Count", id);
       let res = await axios.post("https://winner.archiecoin.online/SelectWinner", {
         indexNo: id,
@@ -215,19 +251,19 @@ const Landing_slider = ({ setloading_spin }) => {
           loteryContractAbi,
           loteryContractAddress
         );
-        let cardInfo = await loteryContractOf.methods.fin(id).call();
-        console.log("card_Postion", cardInfo.lottery_count);
+        let cardInfo = await loteryContractOf.methods.lottey_detail(id).call();
         let showWinners = await loteryContractOf.methods.showWinners(id).call();
+        console.log("card_Postion", cardInfo.lottery_completed);
         for (let i = 0; i < showWinners[0].length; i++) {
           let res = await axios.post(
             "https://winner.archiecoin.online/Winner_List",
             {
               userAddress: showWinners[0][i],
-              time: new Date().toString().slice(0, 15),
-              card_Number: id,
+              time: moment(new Date()).format("YYYY-MM-DD"),
+              card_Number: card_Number,
               position: value * 1,
               reward: showWinners[1][i],
-              gameNumber: cardInfo.lottery_count,
+              gameNumber: cardInfo.lottery_completed,
             }
           );
           console.log("showWinners", res);
