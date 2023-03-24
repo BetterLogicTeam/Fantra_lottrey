@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import lucky from "../../Assets/images/lucky.png";
+import lucky from "../../Assets/images/lucky-me-logo.png";
 import cart from "../../Assets/images/cart.png";
 import "./Header.css";
 import { FaFacebookF } from "react-icons/fa";
