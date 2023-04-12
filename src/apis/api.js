@@ -36,16 +36,11 @@ const changeNetwork = async ({ networkName }) => {
       params: [{ chainId: web3.utils.toHex(97) }]
     });
     window.location.reload();
-
-
-
-
-
   } catch (err) {
     console.log(err, "not found");
   }
 };
-const handleNetworkSwitch = async (networkName) => {
+const handleNetworkSwitch = async (networkName) => {  
   await changeNetwork({ networkName });
 };
 let accounts;

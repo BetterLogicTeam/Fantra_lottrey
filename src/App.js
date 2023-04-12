@@ -24,6 +24,7 @@ import Collection from './Components/Collection/Collection';
 import ScrollUpButton from "react-scroll-up-button";
 import PrivateRoutes from './Components/Private';
 import PublicRoute from './Components/Public';
+import How_To_use from './Components/How to Use/How_To_use';
 
 function App() {
   // localStorage.setItem("UserAuth",false)
@@ -32,6 +33,7 @@ function App() {
     <div className="">
 
       <BrowserRouter>
+      <Header/>
         <ToastContainer />
         <ScrollUpButton />
         <Routes>
@@ -39,11 +41,9 @@ function App() {
           <Route path="/Results" element={<PublicRoute><Results /></PublicRoute>} />
           <Route path="/About" element={<PublicRoute><About /></PublicRoute>} />
           <Route path="/Faq" element={<PublicRoute><Faq /></PublicRoute>} />
-          <Route element={<PrivateRoutes />}>
+          <Route path="/How_To_use" element={<PublicRoute><How_To_use /></PublicRoute>} />
 
-            <Route path="/admin_panel" element={<Collection />} />
-          </Route>
-
+         
         </Routes>
         <Footer />
       </BrowserRouter>

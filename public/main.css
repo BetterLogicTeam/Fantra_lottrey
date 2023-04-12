@@ -1802,6 +1802,10 @@ input[type=submit] {
 
 .single-feature {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .single-feature .icon img {
   height: 110px;

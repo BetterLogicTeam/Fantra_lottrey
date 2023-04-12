@@ -11,7 +11,7 @@ import Header from '../Header/Header';
 function Results() {
   return (
     <div>
-        <Header />
+    
 
         <section class="breadcrumb-area">
         <div class="container">

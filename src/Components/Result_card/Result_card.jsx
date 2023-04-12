@@ -10,16 +10,38 @@ import {
   loteryTokenAbi,
   loteryTokenAddress,
 } from "../../utilies/Bsc_contract";
-
+import x10 from "../../Assets/images/10x.png";
+import x20 from "../../Assets/images/20x.png";
+import x50 from "../../Assets/images/50x.png";
+import x250 from "../../Assets/images/250x.png";
+import x500 from "../../Assets/images/500x.png";
+import x1000 from "../../Assets/images/1000x.png";
+import x100 from "../../Assets/images/100x.png";
+import x2500 from "../../Assets/images/2500x.png";
+import x5000 from "../../Assets/images/5000x.png";
+import x10000 from "../../Assets/images/10000x.png";
+import x25000 from "../../Assets/images/25000x.png";
+import x50000 from "../../Assets/images/50000x.png";
+import x100000 from "../../Assets/images/100000x.png";
+import x250000 from "../../Assets/images/250000.png";
+import x500000 from "../../Assets/images/500000x.png";
+import x1000000 from "../../Assets/images/1000000x.png";
+import { Pagination } from "@mui/material";
+import moment from "moment";
 function Result_card(data) {
   const [isOpen, setIsOpen] = useState(4);
-  const [itemToBeShow, setitemToBeShow] = useState(2);
-
+  const [itemToBeShow, setitemToBeShow] = useState(4);
 
   const [cardData, setCardData] = useState([]);
   const [cardEndTime, setcardEndTime] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+  const [gameWinnerDate, setgameWinnerDate] = useState([]);
 
-
+  const setPageNumber = (event, value) => {
+    // setPage(value);
+    setCurrentPage(value);
+  };
 
   const getResult = async () => {
     try {
@@ -34,19 +56,36 @@ function Result_card(data) {
       );
 
       let array2 = [];
+      let array3 = [];
 
       for (let i = 1; i < 17; i++) {
-        let result = await loteryContractOf.methods.showWinners(i).call();
+        let result = await loteryContractOf.methods
+          .show_latest_winners(i)
+          .call();
         let arr = [];
+
+        let WinnerDate = result[2];
+        let dateObj = {
+          Date:
+            WinnerDate == 0
+              ? "Days Month,Year"
+              : moment(WinnerDate * 1000).format("dddd MMMM DD,YYYY"),
+        };
+        array3.push(dateObj);
+        setgameWinnerDate([...array3]);
+
         for (let index = 0; index < result[0].length; index++) {
           const address = result[0][index];
-          const amount = result[1][index];
+          let amount = result[1][index];
+          // setgameWinnerDate(moment(WinnerDate* 1000).format("dddd MMMM DD,YYYY"))
+          amount = web3.utils.fromWei(amount.toString());
           let obj = {
             address: address,
-            amount: amount,
+            amount: parseInt(amount),
           };
           arr.push(obj);
         }
+        // array3=[...array3,arr2]
         array2 = [...array2, arr];
       }
 
@@ -56,9 +95,9 @@ function Result_card(data) {
     }
   };
 
-  const getTime=async()=>{
-    try{
-      let acc = await loadWeb3();
+  const getTime = async () => {
+    try {
+      
       const webSupply = new Web3(
         "https://data-seed-prebsc-1-s1.binance.org:8545"
       );
@@ -71,41 +110,39 @@ function Result_card(data) {
       for (let i = 1; i < 17; i++) {
         let cardInfo = await loteryContractOf.methods.fin(i).call();
         // console.log("cardInfo", cardInfo);
-  
+
         let obj = {
           receivedEntry: cardInfo.received_entry,
           winner: cardInfo.winners,
-          time:cardInfo.time,
+          time: cardInfo.time,
           cardTitle: cardInfo.name,
           totalEntry: cardInfo.total_entry,
           currenttime: cardInfo.currenttime,
         };
-  
+
         // console.log("playerEntry", obj);
-  
+
         arr.push(obj);
-        setcardEndTime([...arr])
+        setcardEndTime([...arr]);
       }
-
-     
-
-
-
-    }catch(e){
-
-    }
-  }
+    } catch (e) {}
+  };
 
   useEffect(() => {
     getResult();
-    getTime()
+    getTime();
   }, []);
+
+
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentTokens = cardData.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div>
       {cardData.slice(0, isOpen).map((item, index) => {
        
-      //  console.log("cardEndTime",cardEndTime[index].currenttime);
         return (
           <>
             <ul>
@@ -121,47 +158,116 @@ function Result_card(data) {
                           <div class="light-area">
                             <div class="light-area-top">
                               <div class="left">
-                                <img src={d1} alt="" />
-                                <h4 class="textsiz1">
-                                  {index == 0 ? (
-                                    <>10</>
-                                  ) : index == 1 ? (
-                                    <>20</>
-                                  ) : index == 2 ? (
-                                    <>50</>
-                                  ) : index == 3 ? (
-                                    <>100</>
-                                  ) : index == 4 ? (
-                                    <>250</>
-                                  ) : index == 5 ? (
-                                    <>500</>
-                                  ) : index == 6 ? (
-                                    <>1000</>
-                                  ) : index == 7 ? (
-                                    <>2500</>
-                                  ) : index == 8 ? (
-                                    <>5000</>
-                                  ) : index == 9 ? (
-                                    <>10000</>
-                                  ) : index == 10 ? (
-                                    <>25000</>
-                                  ) : index == 11 ? (
-                                    "50000"
-                                  ) : index == 12 ? (
-                                    "100000"
-                                  ) : index == 13 ? (
-                                    "250000"
-                                  ) : index == 14 ? (
-                                    "500000"
-                                  ) : (
-                                    "1000000"
-                                  )}
-                                  X
-                                </h4>
+                                {/* <img src={d1} alt="" /> */}
+                                {index == 0 ? (
+                                  <>
+                                    {" "}
+                                    <div className="icon">
+                                      <img src={x10} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 1 ? (
+                                  <>
+                                    {" "}
+                                    <div className="icon">
+                                      <img src={x20} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 2 ? (
+                                  <>
+                                    {" "}
+                                    <div className="icon">
+                                      <img src={x50} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 3 ? (
+                                  <>
+                                    {" "}
+                                    <div className="icon">
+                                      <img src={x100} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 4 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x250} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 5 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x500} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 6 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x1000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 7 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x2500} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 8 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x5000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 9 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x10000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 10 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x25000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 11 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x50000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 12 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x100000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 13 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x250000} alt="" />
+                                    </div>
+                                  </>
+                                ) : index == 14 ? (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x500000} alt="" />
+                                    </div>
+                                  </>
+                                ) : (
+                                  <>
+                                    <div className="icon">
+                                      <img src={x1000000} alt="" />
+                                    </div>
+                                  </>
+                                )}
+                                <h4 class="textsiz1"></h4>
                               </div>
                               <div class="right">
                                 <span>Draw took place on</span>
-                                <h6>Saturday April 20, 2020</h6>
+                                <h6>
+                                  {" "}
+                                  {gameWinnerDate[index].Date}
+                                </h6>
                               </div>
                             </div>
                             <div class="">
@@ -185,7 +291,7 @@ function Result_card(data) {
                                             return (
                                               <>
                                                 <tr key={ind}>
-                                                  <th scope="row">{ind}</th>
+                                                  <th scope="row">{ind + 1}</th>
                                                   <td>{items?.address}</td>
                                                   <td>{items?.amount}</td>
                                                 </tr>
@@ -207,6 +313,14 @@ function Result_card(data) {
                             </div>
                           </div>
                         </button>
+
+                        {/* <div className="d-flex justify-content-center">
+                          <Pagination
+                            count={Math.ceil(cardData.length / postsPerPage)}
+                            page={currentPage}
+                            onChange={setPageNumber}
+                          />
+                        </div> */}
 
                         {/* {isOpen && (
                     <div className="col-md-12">
@@ -247,12 +361,14 @@ function Result_card(data) {
                           onClick={() =>
                             setitemToBeShow(
                               itemToBeShow == cardData[index].length
-                                ? "2"
+                                ? "4"
                                 : cardData[index].length
                             )
                           }
                         >
-                          show more
+                          {itemToBeShow !== cardData[index].length
+                            ? "    Show more"
+                            : "Show Less"}
                         </button>
                       </h2>
                     </div>
@@ -279,3 +395,6 @@ function Result_card(data) {
 }
 
 export default Result_card;
+
+
+// PDFViewer react js

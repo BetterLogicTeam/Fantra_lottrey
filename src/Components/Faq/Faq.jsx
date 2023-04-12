@@ -9,7 +9,7 @@ import Header from "../Header/Header";
 function Faq() {
   return (
     <div>
-        <Header />
+    
       <section class="breadcrumb-area">
         <div class="container">
           <div class="content">

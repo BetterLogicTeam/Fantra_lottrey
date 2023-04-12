@@ -13,6 +13,8 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { Modal } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
+// import Button from '@mui/material/Button';
+
 
 function Header() {
   let isuser= localStorage.getItem("UserAuth")
@@ -169,6 +171,12 @@ function Header() {
                         <a href="">Faq</a>
                       </li>
                     </Link>
+                    <Link className="leenk" to="/How_To_use">
+                      <li>
+                        <a href="">How To User</a>
+                      </li>
+                    </Link>
+                   
                   </ul>
                   <div className="right-tools"></div>
                   <div className="header-bar d-lg-none">

@@ -20,9 +20,11 @@ import {
 import Web3 from "web3";
 import Loading_spinner from "../Loading/Loading_spinner";
 import Header from "../Header/Header";
+import User_Record_Cards from "../User_Record_Card/User_Record_Card";
+import User_Winner_Record from "../User_Record_Card/User_Winner_Record";
 
 function Landing() {
-  const [loading_spin, setloading_spin] = useState(false)
+  const [loading_spin, setloading_spin] = useState(false);
   const showWinners = async () => {
     try {
       const webSupply = new Web3(
@@ -49,15 +51,11 @@ function Landing() {
 
   return (
     <div>
-        <Header />
+      {/* <Header /> */}
 
-      {
-        loading_spin &&
-        <Loading_spinner/>
-      }
+      {loading_spin && <Loading_spinner />}
 
-
-          <section className="banner-section">
+      <section className="banner-section">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -66,15 +64,16 @@ function Landing() {
               <p className="text">
                 Power up for a chance to win in this electrifying instant game!
               </p>
-              <a href="#" className="custom-button2">
+              <a href="#play" className="custom-button2">
                 Start Playing Now
               </a>
             </div>
           </div>
         </div>
+        <div id="play"></div>
       </section>
 
-      <section className="draw-section mb-5">
+      <section className="draw-section mb-5 ">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -130,6 +129,35 @@ function Landing() {
             <div className="col-lg-9">
               <div className="content">
                 <div className="section-header">
+                  <h2 className="title">User All Lottery results</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="result-box">
+                <h4 className="box-header">User Lottery Investing Numbers</h4>
+                <div className="result-list">
+                  <User_Record_Cards />
+                </div>
+                <h4 className="box-header">User Lottery Winning Numbers</h4>
+                <div className="result-list">
+                  <User_Winner_Record />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="lottery-result mt-5">
+        <img className="bg-image" src={result_background} alt="" />
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-9">
+              <div className="content">
+                <div className="section-header">
                   <h2 className="title">Latest Lottery results</h2>
                   <p className="text">
                     Check Your lotto online, find all the lotto winning numbers
@@ -145,9 +173,7 @@ function Landing() {
                 <h4 className="box-header">Lottery Winning Numbers</h4>
                 <div className="result-list">
                   <Result_card />
-                 
                 </div>
-                
               </div>
             </div>
           </div>
@@ -167,9 +193,6 @@ function Landing() {
         />
         <Result_check />
       </section> */}
-        
-     
-    
     </div>
   );
 }

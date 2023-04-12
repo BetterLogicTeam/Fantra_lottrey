@@ -19,6 +19,27 @@ import Countdown from "react-countdown";
 import Timer from "../Timer/Timer";
 import axios from "axios";
 import moment from "moment";
+import x10 from '../../Assets/images/10x.png'
+import x20 from '../../Assets/images/20x.png'
+import x50 from '../../Assets/images/50x.png'
+import x250 from '../../Assets/images/250x.png'
+import x500 from '../../Assets/images/500x.png'
+import x1000 from '../../Assets/images/1000x.png'
+import x100 from '../../Assets/images/100x.png'
+import x2500 from '../../Assets/images/2500x.png'
+import x5000 from '../../Assets/images/5000x.png'
+import x10000 from '../../Assets/images/10000x.png'
+import x25000 from '../../Assets/images/25000x.png'
+import x50000 from '../../Assets/images/50000x.png'
+import x100000 from '../../Assets/images/100000x.png'
+import x250000 from '../../Assets/images/250000.png'
+import x500000 from '../../Assets/images/500000x.png'
+import x1000000 from '../../Assets/images/1000000x.png'
+
+
+
+
+
 
 const Landing_slider = ({ setloading_spin }) => {
   const [cardData, setCardData] = useState([
@@ -98,9 +119,10 @@ const Landing_slider = ({ setloading_spin }) => {
   };
 
   useEffect(() => {
+    
     getInitialValue();
     // pricePrToken = window.web3.utils.fromWei(pricePrToken, "ether")
-  });
+  },[]);
 
   const buyTickets = async (index) => {
     console.log("card_Postion", moment(new Date()).format("YYYY-MM-DD"));
@@ -173,13 +195,16 @@ const Landing_slider = ({ setloading_spin }) => {
       let cardInfo = await loteryContractOf.methods.lottey_detail(index).call();
 
       for (let i = 1; i <= value; i++) {
-        let res = await axios.post("https://winner.archiecoin.online/Lotter_invester", {
-          userAddress: acc,
-          time: moment(new Date()).format("YYYY-MM-DD"),
-          card_Number: card_Number,
-          position: value * 1,
-          gameNumber: cardInfo.lottery_completed,
-        });
+        let res = await axios.post(
+          "https://winner.archiecoin.online/Lotter_invester",
+          {
+            userAddress: acc,
+            time: moment(new Date()).format("YYYY-MM-DD"),
+            card_Number: card_Number,
+            position: value * 1,
+            gameNumber: cardInfo.lottery_completed,
+          }
+        );
         console.log("Lotter_invester", res);
       }
 
@@ -203,44 +228,47 @@ const Landing_slider = ({ setloading_spin }) => {
   const selectWinner = async (id) => {
     try {
       // if (count == 1) {
-        let card_Number = "";
-        if (id == 1) {
-          card_Number = "10x";
-        } else if (id == 2) {
-          card_Number = "20x";
-        } else if (id == 3) {
-          card_Number = "50x";
-        } else if (id == 4) {
-          card_Number = "100x";
-        } else if (id == 5) {
-          card_Number = "250x";
-        } else if (id == 6) {
-          card_Number = "500x";
-        } else if (id == 7) {
-          card_Number = "1000x";
-        } else if (id == 8) {
-          card_Number = "2500x";
-        } else if (id == 9) {
-          card_Number = "5000x";
-        } else if (id == 10) {
-          card_Number = "10000x";
-        } else if (id == 11) {
-          card_Number = "25000x";
-        } else if (id == 12) {
-          card_Number = "50000x";
-        } else if (id == 13) {
-          card_Number = "100000x";
-        } else if (id == 14) {
-          card_Number = "250000x";
-        } else if (id == 15) {
-          card_Number = "500000x";
-        } else if (id == 16) {
-          card_Number = "1000000x";
-        }
+      let card_Number = "";
+      if (id == 1) {
+        card_Number = "10x";
+      } else if (id == 2) {
+        card_Number = "20x";
+      } else if (id == 3) {
+        card_Number = "50x";
+      } else if (id == 4) {
+        card_Number = "100x";
+      } else if (id == 5) {
+        card_Number = "250x";
+      } else if (id == 6) {
+        card_Number = "500x";
+      } else if (id == 7) {
+        card_Number = "1000x";
+      } else if (id == 8) {
+        card_Number = "2500x";
+      } else if (id == 9) {
+        card_Number = "5000x";
+      } else if (id == 10) {
+        card_Number = "10000x";
+      } else if (id == 11) {
+        card_Number = "25000x";
+      } else if (id == 12) {
+        card_Number = "50000x";
+      } else if (id == 13) {
+        card_Number = "100000x";
+      } else if (id == 14) {
+        card_Number = "250000x";
+      } else if (id == 15) {
+        card_Number = "500000x";
+      } else if (id == 16) {
+        card_Number = "1000000x";
+      }
       console.log("Count", id);
-      let res = await axios.post("https://winner.archiecoin.online/SelectWinner", {
-        indexNo: id,
-      });
+      let res = await axios.post(
+        "https://winner.archiecoin.online/SelectWinner",
+        {
+          indexNo: id,
+        }
+      );
       console.log("SelectWinner🎉", res);
       if (res.data.success == true) {
         const webSupply = new Web3(
@@ -299,6 +327,7 @@ const Landing_slider = ({ setloading_spin }) => {
         }}
         modules={[Navigation, Autoplay]}
         className="mySwiper swipper_paddding"
+      
       >
         {cardData.map((item, index, array) => {
           return (
@@ -308,44 +337,102 @@ const Landing_slider = ({ setloading_spin }) => {
                   <p>
                     <b>
                       {index == 0 ? (
-                        <> 10x</>
+                        <>
+                          {" "}
+                       
+                          <div className="icon">
+                            <img src={x10} alt="" />
+                          </div>
+                        </>
                       ) : index == 1 ? (
-                        <> 20x</>
+                        <> <div className="icon">
+                        <img src={x20} alt="" />
+                      </div></>
                       ) : index == 2 ? (
-                        <> 50x</>
+                        <>   <div className="icon">
+                        <img src={x50} alt="" />
+                      </div></>
                       ) : index == 3 ? (
-                        <> 100x</>
+                        <>   <div className="icon">
+                        <img src={x100} alt="" />
+                      </div></>
                       ) : index == 4 ? (
-                        <> 250x</>
+                       <>
+                       <div className="icon">
+                        <img src={x250} alt="" />
+                      </div>
+                       </>
                       ) : index == 5 ? (
-                        <> 500x</>
+                        <>
+                        <div className="icon">
+                        <img src={x500} alt="" />
+                      </div>
+                        </>
                       ) : index == 6 ? (
-                        <> 1000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x1000} alt="" />
+                      </div>
+                        </>
                       ) : index == 7 ? (
-                        <> 2500x</>
+                        <>
+                        <div className="icon">
+                        <img src={x2500} alt="" />
+                      </div>
+                        </>
                       ) : index == 8 ? (
-                        <> 5000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x5000} alt="" />
+                      </div>
+                        </>
                       ) : index == 9 ? (
-                        <> 10000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x10000} alt="" />
+                      </div>
+                        </>
                       ) : index == 10 ? (
-                        <> 25000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x25000} alt="" />
+                      </div>
+                        </>
                       ) : index == 11 ? (
-                        <>50000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x50000} alt="" />
+                      </div>
+                        </>
                       ) : index == 12 ? (
-                        <>100000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x100000} alt="" />
+                      </div>
+                        </>
                       ) : index == 13 ? (
-                        <>250000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x250000} alt="" />
+                      </div>
+                        </>
                       ) : index == 14 ? (
-                        <>500000x</>
+                        <>
+                        <div className="icon">
+                        <img src={x500000} alt="" />
+                      </div>
+                        </>
                       ) : (
-                        <>1000000x</>
+                         <>
+                        <div className="icon">
+                        <img src={x1000000} alt="" />
+                      </div>
+                        </>
                       )}
                     </b>
                   </p>
                   {/* <img className="overlay" src={overlaymask1} alt=""/> */}
-                  <div className="icon">
-                    <img src={d1} alt="" />
-                  </div>
+
                   <h4>
                     Total Entries:
                     <br /> <span>{item?.receivedEntry}</span> /{" "}
@@ -458,18 +545,10 @@ const Landing_slider = ({ setloading_spin }) => {
                     </>
                   )}
 
-                  {/* <button
-                    className="custom_button_Owner"
-                    onClick={() => {
-                      selectWinner(index + 1);
-                    }}
-                  >
-                    Select Winner
-                  </button> */}
 
-                  <div className="next-draw">
+                  <div className="next-draw " style={{marginTop:'-2rem'}}>
                     <span className="text">Next Draw :</span>
-                    <div className="time">
+                    <div className="time" style={{marginTop:'-2rem'}} >
                       <img src={time} alt="" />
                       {count !== 0 ? (
                         <></>

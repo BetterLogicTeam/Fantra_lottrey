@@ -22,13 +22,10 @@ export default function Timer(props) {
   // Renderer callback with condition
   const renderer =  ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      // setflag(true)
-      
-      
-     
+      // setflag(true) 
       return <Completionist />;
     } else {
-  
+  // console.log("days",days);
 
       return (
         <div className="text_days fs-5 ">
@@ -67,3 +64,9 @@ export default function Timer(props) {
     </div>
   );
 }
+
+//what is generator function in javascript
+// What is Different B/w React js and Next js explain in details
+// What is server-side rendered 
+ // what is useMemo in React js explain in details
+ // What is throttling and debouncing in js explain in details

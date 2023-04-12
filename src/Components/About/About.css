@@ -32,3 +32,13 @@
         margin-left: 20px;
     }
 }
+
+.list_Guide{
+    list-style-type:decimal;
+    margin-left: 2rem;
+
+}
+.list_Guide .subList_Guide li{
+    list-style-type:lower-roman !important;
+    margin-left: 3rem;
+}

@@ -2404,7 +2404,7 @@ input[type=submit] {
 .blog-page .post-details .content .main-content .right .tags-area .tags a:last-child::after {
   display: none;
 }
-.blog-page .post-details .content .main-content .right .tags-area .social-icons {
+.blog-page .post-details .content .main-content .right .tags-area .social-s {
   margin-top: 13.5px;
 }
 .blog-page .post-details .content .main-content .right .social-icons {

@@ -34,7 +34,7 @@ const content = (
 function About() {
   return (
     <div>
-        <Header />
+     
 
       <section className="breadcrumb-area">
         <div className="container">
@@ -113,19 +113,32 @@ function About() {
                 <div className="section-header">
                   <h2 className="title">About us</h2>
                   <p>
-                    We offer the possibility to play the world’s biggest
-                    lotteries online. Our site was designed with a lottery
-                    player in mind. We are lotto fans ourselves, therefore we
-                    know what it takes to satisfy one.
+                    At LuckyMe, we're on a mission to revolutionize the world of
+                    lottery systems. Our team is made up of experienced
+                    developers and entrepreneurs who are passionate about using
+                    blockchain technology to create a fair and transparent
+                    lottery experience.
                   </p>
                   <p>
-                    Our team is build up with lottery enthusiasts, but also
-                    industry professionals. Our designers and developers ensure
-                    the smoothest lotto playing experience. Support is also a
-                    pillar of our operations. Our agents are always thriving to
-                    help.
+                    We believe that everyone should have the opportunity to win
+                    big, regardless of their background or financial status.
+                    That's why we created LuckyMe, a decentralized blockchain
+                    lottery system that's accessible to anyone with an internet
+                    connection.
                   </p>
-                  <p>Your satisfaction is our goal!</p>
+                  <p>
+                    With our smart contract automation and instant reward
+                    system, we're proud to offer a lottery experience that's
+                    both fun and secure. And with our commitment to transparency
+                    and fairness, you can trust that your chances of winning are
+                    just as good as anyone else's.
+                  </p>
+                  <p>
+                    Thank you for choosing LuckyMe as your lottery system of
+                    choice. We look forward to bringing you the best possible
+                    experience and helping you achieve your dreams of hitting it
+                    big!
+                  </p>
                 </div>
               </div>
             </div>
