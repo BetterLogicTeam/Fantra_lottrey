@@ -3,7 +3,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import Faq_accord from "../Faq_accord/Faq_accord";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import "./Faq.css";
+// import "./Faq.css";
 import Header from "../Header/Header";
 
 function Faq() {
@@ -45,7 +45,7 @@ function Faq() {
                     you're looking for.
                   </p>
                 </div>
-                <div class="row">
+                {/* <div class="row">
                   <div class="col-lg-4">
                     <div class="faq-menu">
                       <ul>
@@ -104,6 +104,20 @@ function Faq() {
                     </div>
                    
                   </div>
+                </div> */}
+
+
+                                    {/* according starts fro here  */}
+
+
+
+
+                <div className="row justify-content-center">
+                <div className="col-md-8">
+                <Faq_accord/>
+                </div>
+
+
                 </div>
               </div>
             </div>

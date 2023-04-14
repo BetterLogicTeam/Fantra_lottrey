@@ -25,6 +25,7 @@ import ScrollUpButton from "react-scroll-up-button";
 import PrivateRoutes from './Components/Private';
 import PublicRoute from './Components/Public';
 import How_To_use from './Components/How to Use/How_To_use';
+import Faq_accord from './Components/Faq_accord/Faq_accord';
 
 function App() {
   // localStorage.setItem("UserAuth",false)
@@ -46,6 +47,7 @@ function App() {
          
         </Routes>
         <Footer />
+        {/* <Faq_accord/> */}
       </BrowserRouter>
     </div>
   );
