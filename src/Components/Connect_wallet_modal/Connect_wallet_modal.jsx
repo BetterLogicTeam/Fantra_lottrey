@@ -38,6 +38,8 @@ const Connect_wallet_modal = () => {
       );
 
       let balanceOf = await loteryTokenof.methods.balanceOf(acc).call();
+      balanceOf= webSupply.utils.fromWei(balanceOf.toString())
+
       settokenBalance(balanceOf.toString());
      
     }

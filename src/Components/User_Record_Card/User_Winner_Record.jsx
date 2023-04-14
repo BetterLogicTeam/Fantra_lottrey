@@ -91,8 +91,8 @@ export default function User_Winner_Record() {
                                           <tr key={ind}>
                                             <th scope="row">{items.index}</th>
                                             <td>{items?.userAddress}</td>
-                                            <td>{items?.position}</td>
-                                             <td>{WebSupply.utils.fromWei(items?.reward)}</td>
+                                            <td>{items?.position} BUSD</td>
+                                             <td>{WebSupply.utils.fromWei(items?.reward)} BUSD</td>
                                           </tr>
                                         </>
                                       );

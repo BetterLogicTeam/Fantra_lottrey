@@ -173,7 +173,7 @@ function Header() {
                     </Link>
                     <Link className="leenk" to="/How_To_use">
                       <li>
-                        <a href="">How To User</a>
+                        <a href="">How To Use</a>
                       </li>
                     </Link>
                    

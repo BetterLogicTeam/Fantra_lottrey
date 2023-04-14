@@ -293,7 +293,7 @@ function Result_card(data) {
                                                 <tr key={ind}>
                                                   <th scope="row">{ind + 1}</th>
                                                   <td>{items?.address}</td>
-                                                  <td>{items?.amount}</td>
+                                                  <td>{items?.amount} BUSD</td>
                                                 </tr>
                                               </>
                                             );

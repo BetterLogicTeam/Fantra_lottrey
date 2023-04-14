@@ -58,11 +58,11 @@ function Landing() {
       <section className="banner-section">
         <div className="container">
           <div className="row">
-            <div className="col-12">
-              <p className="banner-subtitle">Exclusive Lottery </p>
-              <h1 className="banner-title">Mega Jackpot</h1>
-              <p className="text">
-                Power up for a chance to win in this electrifying instant game!
+            <div className="col-12" style={{marginTop:"-1.5rem"}}>
+              <p className="banner-subtitle">Get Lucky, Get Rewarded with LuckyMe's Community </p>
+              <h1 className="banner-title">Powered Mega Jackpot</h1>
+              <p className="text landing_page_text">
+              Built on the Strength of Our Blockchain Technology and Driven <br /> by Your Passion for Winning!"
               </p>
               <a href="#play" className="custom-button2">
                 Start Playing Now

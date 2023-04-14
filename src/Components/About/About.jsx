@@ -24,6 +24,10 @@ import { Button, Popover } from "antd";
 import { Link } from "react-router-dom";
 import Testimonial_data from "../Testimonial_data/Testimonial_data";
 import Header from "../Header/Header";
+import Web3 from "web3";
+import { loteryContractAbi, loteryContractAddress } from "../../utilies/Bsc_contract";
+import { useState } from "react";
+import { useEffect } from "react";
 const content = (
   <div>
     <p>Content</p>
@@ -32,6 +36,50 @@ const content = (
 );
 
 function About() {
+  const [total_entries_all, settotal_entries_all] = useState(0)
+  const [total_invested_amount, settotal_invested_amount] = useState(0)
+  const [total_lottery_completed, settotal_lottery_completed] = useState(0)
+  const [total_reward, settotal_reward] = useState()
+
+
+
+  const webSupply = new Web3("https://bsc-testnet.public.blastapi.io");
+  const lotter_all_data = async () => {
+    try {
+      // let acc = await loadWeb3();
+      const web3 = window.web3;
+      let loteryContractOf = new webSupply.eth.Contract(
+        loteryContractAbi,
+        loteryContractAddress
+      );
+
+    
+        let total_entries_all = await loteryContractOf.methods
+          .total_entries()
+          .call();
+
+        settotal_entries_all(total_entries_all);
+        let total_invested_amount = await loteryContractOf.methods
+          .total_invested_amount()
+          .call();
+        total_invested_amount = webSupply.utils.fromWei(total_invested_amount);
+        settotal_invested_amount(total_invested_amount);
+        let total_lottery_completed = await loteryContractOf.methods
+          .total_lottery_completed()
+          .call();
+        settotal_lottery_completed(total_lottery_completed);
+        let total_reward = await loteryContractOf.methods.total_reward().call();
+        settotal_reward(parseInt(webSupply.utils.fromWei(total_reward)));
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    lotter_all_data()
+  }, [])
+  
   return (
     <div>
      
@@ -72,22 +120,22 @@ function About() {
                         <div className="col-lg-4">
                           <div className="c-box">
                             <img className="icon" src={ac1} alt="" />
-                            <h3 className="number">23</h3>
-                            <p className="text">Winners Last Month</p>
+                            <h3 className="number">{total_entries_all}</h3>
+                            <p className="text">Total Entries</p>
                           </div>
                         </div>
                         <div className="col-lg-4">
                           <div className="c-box">
                             <img className="icon" src={ac2} alt="" />
-                            <h3 className="number">2837K</h3>
-                            <p className="text">Tickets Sold</p>
+                            <h3 className="number">{total_invested_amount} BUSD</h3>
+                            <p className="text">Total Invested Amount</p>
                           </div>
                         </div>
                         <div className="col-lg-4">
                           <div className="c-box">
                             <img className="icon" src={ac3} alt="" />
-                            <h3 className="number">28387K</h3>
-                            <p className="text">Payout to Winners</p>
+                            <h3 className="number">{total_lottery_completed}</h3>
+                            <p className="text">Total Lottery Completed</p>
                           </div>
                         </div>
                       </div>

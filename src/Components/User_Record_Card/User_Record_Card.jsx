@@ -109,7 +109,7 @@ function User_Record_Cards(data) {
                                         <tr key={ind}>
                                           <th scope="row">{items.index}</th>
                                           <td>{items?.userAddress}</td>
-                                          <td>{items?.position}</td>
+                                          <td>{items?.position} BUSD</td>
                                          
 
                                         </tr>

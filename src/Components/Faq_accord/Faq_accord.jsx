@@ -1,7 +1,7 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import "./Faq_accord.css";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function Faq_accord() {
   return (
     <div>
@@ -10,13 +10,10 @@ function Faq_accord() {
           <Accordion.Header className="accccor_head">
             <h5 class="title mb-3">What is Fantra.com ?</h5>
           </Accordion.Header>
-          <Accordion.Body style={{ color: "#5949b3", fontFamily: "Comfortaa" }}>
-            <div class="mycard-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-              cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-              laborum eiusmod.
-            </div>
+          <Accordion.Body>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
+            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">

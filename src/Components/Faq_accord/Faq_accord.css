@@ -6,3 +6,12 @@
     background-image: url("../../Assets/images/faq-bg.png") !important;
     font-family: "Comfortaa";
 }
+
+.accordion-body{
+    color: red !important;
+}
+.collapse {
+    visibility: collapse;
+    color: red !important;
+
+}
