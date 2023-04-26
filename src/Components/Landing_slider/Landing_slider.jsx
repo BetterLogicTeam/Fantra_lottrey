@@ -14,7 +14,7 @@ import {
 } from "../../utilies/Bsc_contract";
 import Web3 from "web3";
 import { loadWeb3 } from "../../apis/api";
-import { toast } from "react-toastify";
+
 import Countdown from "react-countdown";
 import Timer from "../Timer/Timer";
 import axios from "axios";
@@ -35,6 +35,7 @@ import x100000 from '../../Assets/images/100000x.png'
 import x250000 from '../../Assets/images/250000.png'
 import x500000 from '../../Assets/images/500000x.png'
 import x1000000 from '../../Assets/images/1000000x.png'
+import { toast } from "react-hot-toast";
 
 
 
@@ -193,6 +194,8 @@ const Landing_slider = ({ setloading_spin }) => {
           from: acc,
         });
       let cardInfo = await loteryContractOf.methods.lottey_detail(index).call();
+      toast.success("Please Wait a While");
+        
 
       for (let i = 1; i <= value; i++) {
         let res = await axios.post(
@@ -209,8 +212,8 @@ const Landing_slider = ({ setloading_spin }) => {
       }
 
       toast.success("Transaction successful! 🎉");
-
       setloading_spin(false);
+      window.location.reload();
     } catch (error) {
       console.log("Error While Buy Ticket", error);
       setloading_spin(false);

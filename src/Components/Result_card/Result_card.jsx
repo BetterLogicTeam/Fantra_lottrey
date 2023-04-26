@@ -131,6 +131,7 @@ function Result_card(data) {
   useEffect(() => {
     getResult();
     getTime();
+   
   }, []);
 
 

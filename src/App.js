@@ -26,6 +26,7 @@ import PrivateRoutes from './Components/Private';
 import PublicRoute from './Components/Public';
 import How_To_use from './Components/How to Use/How_To_use';
 import Faq_accord from './Components/Faq_accord/Faq_accord';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   // localStorage.setItem("UserAuth",false)
@@ -35,7 +36,7 @@ function App() {
 
       <BrowserRouter>
       <Header/>
-        <ToastContainer />
+      <Toaster />
         <ScrollUpButton />
         <Routes>
           <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
