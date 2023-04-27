@@ -197,7 +197,7 @@ const Landing_slider = ({ setloading_spin }) => {
       toast.success("Please Wait a While");
         
 
-      for (let i = 1; i <= value; i++) {
+      // for (let i = 1; i <= value; i++) {
         let res = await axios.post(
           "https://winner.archiecoin.online/Lotter_invester",
           {
@@ -205,11 +205,11 @@ const Landing_slider = ({ setloading_spin }) => {
             time: moment(new Date()).format("YYYY-MM-DD"),
             card_Number: card_Number,
             position: value * 1,
-            gameNumber: cardInfo.lottery_completed,
+            gameNumber: value,
           }
         );
         console.log("Lotter_invester", res);
-      }
+      // }
 
       toast.success("Transaction successful! 🎉");
       setloading_spin(false);
@@ -294,7 +294,7 @@ const Landing_slider = ({ setloading_spin }) => {
               card_Number: card_Number,
               position: value * 1,
               reward: showWinners[1][i],
-              gameNumber: cardInfo.lottery_completed,
+              gameNumber: value,
             }
           );
           console.log("showWinners", res);

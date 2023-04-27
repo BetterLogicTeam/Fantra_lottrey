@@ -140,6 +140,8 @@ function Result_card(data) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentTokens = cardData.slice(indexOfFirstPost, indexOfLastPost);
 
+  console.log("cardData",cardData);
+
   return (
     <div>
       {cardData.slice(0, isOpen).map((item, index) => {
@@ -151,7 +153,7 @@ function Result_card(data) {
                 <div class="result-list" id="top">
                   <div class=" single-list" id="">
                     <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
+                      <h2 class="accordion-header1" id="headingOne">
                         <button
                           class="accordion-button collapsed single-"
                           type="button"

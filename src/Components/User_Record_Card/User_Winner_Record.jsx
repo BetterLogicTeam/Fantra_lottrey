@@ -61,7 +61,7 @@ export default function User_Winner_Record() {
                     <div class="light-area">
                       <div class="light-area-top">
                         <div class="right">
-                          <span>Draw took place on</span>
+                          {/* <span>Draw took place on</span> */}
                           <h6>{/* {gameWinnerDate[index].Date} */}</h6>
                         </div>
                       </div>
@@ -77,6 +77,8 @@ export default function User_Winner_Record() {
                                     <th scope="col">Recieving Address</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Reward</th>
+                                    <th scope="col">Date</th>
+
                                    
                                   </tr>
                                 </thead>
@@ -93,6 +95,8 @@ export default function User_Winner_Record() {
                                             <td>{items?.userAddress}</td>
                                             <td>{items?.position} BUSD</td>
                                              <td>{WebSupply.utils.fromWei(items?.reward)} BUSD</td>
+                                          <td>{items?.time} </td>
+
                                           </tr>
                                         </>
                                       );

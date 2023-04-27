@@ -82,7 +82,7 @@ function User_Record_Cards(data) {
                     <div class="light-area">
                       <div class="light-area-top">
                         <div class="right">
-                          <span>Draw took place on</span>
+                          {/* <span>Draw took place on</span> */}
                           <h6>{/* {gameWinnerDate[index].Date} */}</h6>
                         </div>
                       </div>
@@ -97,6 +97,8 @@ function User_Record_Cards(data) {
 
                                     <th scope="col">Recieving Address</th>
                                     <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
+
                                    
                                   </tr>
                                 </thead>
@@ -110,6 +112,8 @@ function User_Record_Cards(data) {
                                           <th scope="row">{items.index}</th>
                                           <td>{items?.userAddress}</td>
                                           <td>{items?.position} BUSD</td>
+                                          <td>{items?.time} </td>
+
                                          
 
                                         </tr>

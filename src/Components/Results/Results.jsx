@@ -1,10 +1,11 @@
 import React from 'react';
-import Result_card from '../Result_card/Result_card';
+
 import Result_check from '../Result_check/Result_check';
 import result from "../../Assets/images/result.jpg";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
+import Result_card from '../Result_card/Result_card';
 
 
 
@@ -52,17 +53,14 @@ function Results() {
                 <Result_check />
             </div>
         </div> */}
+                       
         <div class="lottery-result result-page">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="result-list">
-                            <Result_card />
-                           
-                        </div>
-                        {/* <div class="text-center">
-                            <a class="view-all" href="#">Load more </a>
-                        </div> */}
+                    <div className="result-list">
+                  <Result_card />
+                </div>
                     </div>
                 </div>
             </div>
