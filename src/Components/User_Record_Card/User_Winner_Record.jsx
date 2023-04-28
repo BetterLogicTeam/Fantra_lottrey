@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { loadWeb3 } from '../../apis/api';
-import { Pagination } from '@mui/material';
-import Web3 from 'web3';
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { loadWeb3 } from "../../apis/api";
+import { Pagination } from "@mui/material";
+import Web3 from "web3";
 
 export default function User_Winner_Record() {
-    const [isOpen, setIsOpen] = useState(4);
+  const [isOpen, setIsOpen] = useState(4);
   const [itemToBeShow, setitemToBeShow] = useState(4);
 
   const [cardData, setCardData] = useState([]);
@@ -21,11 +21,13 @@ export default function User_Winner_Record() {
     setCurrentPage(value);
   };
 
-  const WebSupply= new Web3('https://endpoints.omniatech.io/v1/bsc/testnet/public')
+  const WebSupply = new Web3(
+    "https://endpoints.omniatech.io/v1/bsc/testnet/public"
+  );
 
   const getResult = async () => {
     try {
-      let acc= await loadWeb3()
+      let acc = await loadWeb3();
 
       let res = await axios.get(
         `https://winner.archiecoin.online/get_User_Record?userAddress=${acc}`
@@ -48,7 +50,7 @@ export default function User_Winner_Record() {
   const currentTokens = cardData.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <div>
-          <ul>
+      <ul>
         <li>
           <div class="result-list" id="top">
             <div class=" single-list" id="">
@@ -75,32 +77,36 @@ export default function User_Winner_Record() {
                                     <th scope="col">SRN</th>
 
                                     <th scope="col">Recieving Address</th>
-                                    <th scope="col">Amount</th>
+                                    <th scope="col">Card Number</th>
+                                    <th>Entries</th>
+
                                     <th scope="col">Reward</th>
                                     <th scope="col">Date</th>
-
-                                   
                                   </tr>
                                 </thead>
 
                                 <tbody class="#tbbody">
-                                  {
-                                    
-                                    currentTokens.map((items, ind) => {
-                                      console.log("cardData", items);
-                                      return (
-                                        <>
-                                          <tr key={ind}>
-                                            <th scope="row">{items.index}</th>
-                                            <td>{items?.userAddress}</td>
-                                            <td>{items?.position} BUSD</td>
-                                             <td>{WebSupply.utils.fromWei(items?.reward)} BUSD</td>
-                                          <td>{items?.time} </td>
+                                  {currentTokens.map((items, ind) => {
+                                    console.log("cardData", items);
+                                    return (
+                                      <>
+                                        <tr key={items}>
+                                          <th scope="row">{ind + 1}</th>
+                                          <td>{items?.userAddress}</td>
+                                          <td>{items?.card_Number} </td>
+                                          <td>{items?.gameNumber} </td>
 
-                                          </tr>
-                                        </>
-                                      );
-                                    })}
+                                          <td>
+                                            {WebSupply.utils.fromWei(
+                                              items?.reward
+                                            )}{" "}
+                                            BUSD
+                                          </td>
+                                          <td>{items?.time} </td>
+                                        </tr>
+                                      </>
+                                    );
+                                  })}
                                 </tbody>
                               </table>
                             </div>
@@ -131,5 +137,5 @@ export default function User_Winner_Record() {
         </li>
       </ul>
     </div>
-  )
+  );
 }

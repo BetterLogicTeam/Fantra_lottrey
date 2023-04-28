@@ -96,6 +96,8 @@ function User_Record_Cards(data) {
                                     <th scope="col">SRN</th>
 
                                     <th scope="col">Recieving Address</th>
+                                    <th scope="col">Card Number</th>
+                                    <th>Entries</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Date</th>
 
@@ -108,9 +110,11 @@ function User_Record_Cards(data) {
                                     console.log("cardData", items);
                                     return (
                                       <>
-                                        <tr key={ind}>
-                                          <th scope="row">{items.index}</th>
+                                        <tr key={items}>
+                                          <th scope="row">{ind+1}</th>
                                           <td>{items?.userAddress}</td>
+                                          <td>{items?.card_Number} </td>
+                                          <td>{items?.gameNumber} </td>
                                           <td>{items?.position} BUSD</td>
                                           <td>{items?.time} </td>
 

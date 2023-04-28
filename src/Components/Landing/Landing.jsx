@@ -62,7 +62,7 @@ function Landing() {
               <p className="banner-subtitle">Get Lucky, Get Rewarded with LuckyMe's Community </p>
               <h1 className="banner-title">Powered Mega Jackpot</h1>
               <p className="text landing_page_text">
-              Built on the Strength of Our Blockchain Technology and Driven <br /> by Your Passion for Winning!"
+              Built on the Strength of Our Blockchain Technology and Driven <br /> by Your Passion for Winning!
               </p>
               <a href="#play" className="custom-button2">
                 Start Playing Now

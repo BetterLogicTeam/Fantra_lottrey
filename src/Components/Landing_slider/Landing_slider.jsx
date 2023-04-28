@@ -292,9 +292,9 @@ const Landing_slider = ({ setloading_spin }) => {
               userAddress: showWinners[0][i],
               time: moment(new Date()).format("YYYY-MM-DD"),
               card_Number: card_Number,
-              position: value * 1,
-              reward: showWinners[1][i],
-              gameNumber: value,
+             
+              reward_amount: showWinners[1][i],
+              Enteries: value,
             }
           );
           console.log("showWinners", res);
